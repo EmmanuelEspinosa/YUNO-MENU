@@ -1,0 +1,24 @@
+{
+  "idiomas": [
+    { "id": "es", "label": "Español", "bandera": "🇦🇷" },
+    { "id": "en", "label": "English", "bandera": "🇺🇸" },
+    { "id": "pt", "label": "Português", "bandera": "🇧🇷" }
+  ],
+  "idiomaPorDefecto": "es",
+  "monedas": [
+    { "id": "ARS", "label": "Peso argentino", "simbolo": "$", "tasaVsArs": 1 },
+    { "id": "USD", "label": "Dólar", "simbolo": "US$", "tasaVsArs": 1450 },
+    { "id": "BRL", "label": "Real brasileño", "simbolo": "R$", "tasaVsArs": 260 }
+  ],
+  "monedaPorDefecto": "ARS",
+  "tags": [
+    { "id": "picante", "emoji": "🌶️", "label": { "es": "Picante", "en": "Spicy", "pt": "Picante" } },
+    { "id": "frio", "emoji": "🧊", "label": { "es": "Frío", "en": "Cold", "pt": "Gelado" } },
+    { "id": "sinTacc", "emoji": "🌾", "label": { "es": "Sin TACC", "en": "Gluten free", "pt": "Sem glúten" } },
+    { "id": "vegano", "emoji": "🌱", "label": { "es": "Vegano", "en": "Vegan", "pt": "Vegano" } },
+    { "id": "vegetariano", "emoji": "🥗", "label": { "es": "Vegetariano", "en": "Vegetarian", "pt": "Vegetariano" } },
+    { "id": "sinLactosa", "emoji": "🥛", "label": { "es": "Sin lactosa", "en": "Dairy free", "pt": "Sem lactose" } },
+    { "id": "dulce", "emoji": "🍯", "label": { "es": "Dulce", "en": "Sweet", "pt": "Doce" } },
+    { "id": "conAlcohol", "emoji": "🍷", "label": { "es": "Con alcohol", "en": "Contains alcohol", "pt": "Contém álcool" } }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "nombre": "Café Aurora",
+  "logo": "/logo.svg",
+  "colorPrimario": "#D9A05B",
+  "colorSecundario": "#221812",
+  "tipografia": {
+    "titulos": "Fraunces",
+    "cuerpo": "DM Sans"
+  },
+  "mensajeBienvenida": {
+    "es": "Mirá el menú, pedí desde tu mesa y dejá que nuestra IA te sugiera el maridaje perfecto.",
+    "en": "Browse the menu, order from your table and let our AI suggest the perfect pairing.",
+    "pt": "Veja o cardápio, peça da sua mesa e deixe nossa IA sugerir a combinação perfeita."
+  },
+  "redes": {
+    "instagram": "https://instagram.com/cafeaurora",
+    "whatsapp": "https://wa.me/5491122334455",
+    "facebook": "https://facebook.com/cafeaurora"
+  }
+}

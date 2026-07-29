@@ -1,0 +1,598 @@
+{
+  "categorias": [
+    {
+      "id": "cafes",
+      "emoji": "☕",
+      "nombre": { "es": "Cafés", "en": "Coffee", "pt": "Cafés" }
+    },
+    {
+      "id": "frias",
+      "emoji": "🧊",
+      "nombre": { "es": "Bebidas frías", "en": "Cold drinks", "pt": "Bebidas geladas" }
+    },
+    {
+      "id": "pasteleria",
+      "emoji": "🥐",
+      "nombre": { "es": "Pastelería", "en": "Pastries", "pt": "Confeitaria" }
+    },
+    {
+      "id": "salados",
+      "emoji": "🥪",
+      "nombre": { "es": "Salados", "en": "Savory", "pt": "Salgados" }
+    }
+  ],
+  "productos": [
+    {
+      "id": "espresso",
+      "categoria": "cafes",
+      "precioArs": 3900,
+      "video": "https://videos.pexels.com/video-files/31264406/13351822_360_640_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/31264406/breafast-coffee-coffee-making-coffee-making-31264406.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["medialunas", "alfajor"],
+      "tags": ["vegano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Espresso Aurora",
+          "descripcionCorta": "Shot intenso de nuestro blend propio",
+          "descripcionLarga": "Doble shot extraído en 25 segundos con nuestro blend de Brasil y Colombia, tostado medio en casa. Notas de cacao amargo, caramelo y un final largo. Para puristas que no negocian."
+        },
+        "en": {
+          "nombre": "Espresso Aurora",
+          "descripcionCorta": "An intense shot of our house blend",
+          "descripcionLarga": "Double shot pulled in 25 seconds from our own Brazil-Colombia blend, medium roasted in house. Notes of bitter cocoa, caramel and a long finish. For purists who don't compromise."
+        },
+        "pt": {
+          "nombre": "Espresso Aurora",
+          "descripcionCorta": "Shot intenso da nossa mistura da casa",
+          "descripcionLarga": "Dose dupla extraída em 25 segundos com nossa mistura de Brasil e Colômbia, torrada em casa. Notas de cacau amargo, caramelo e final longo. Para puristas que não negociam."
+        }
+      }
+    },
+    {
+      "id": "cortado",
+      "categoria": "cafes",
+      "precioArs": 4200,
+      "video": "https://videos.pexels.com/video-files/7744417/7744417-sd_960_506_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/7744417/abstract-accessory-adult-air-7744417.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["medialunas", "torta-frutos-rojos"],
+      "tags": ["vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Cortado clásico",
+          "descripcionCorta": "Espresso cortado con leche texturizada",
+          "descripcionLarga": "El de siempre, pero bien hecho: espresso doble cortado con un toque de leche texturizada a 60 grados. Equilibrado, cremoso y con el cuerpo justo para acompañar algo dulce."
+        },
+        "en": {
+          "nombre": "Classic cortado",
+          "descripcionCorta": "Espresso cut with steamed milk",
+          "descripcionLarga": "The classic, done right: double espresso cut with a touch of milk steamed to 60°C. Balanced, creamy and with just the right body to pair with something sweet."
+        },
+        "pt": {
+          "nombre": "Cortado clássico",
+          "descripcionCorta": "Espresso cortado com leite vaporizado",
+          "descripcionLarga": "O de sempre, bem feito: espresso duplo cortado com um toque de leite vaporizado a 60 graus. Equilibrado, cremoso e com o corpo certo para acompanhar algo doce."
+        }
+      }
+    },
+    {
+      "id": "cappuccino",
+      "categoria": "cafes",
+      "precioArs": 5400,
+      "video": "https://videos.pexels.com/video-files/36124880/15319982_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/36124880/bar-cafe-36124880.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["croissant", "torta-chocolate"],
+      "tags": ["vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Cappuccino de la casa",
+          "descripcionCorta": "Espuma sedosa y cacao amargo por encima",
+          "descripcionLarga": "Espresso doble, leche espumada bien sedosa y una lluvia de cacao amargo. Servido en taza de cerámica artesanal. El favorito de la casa para las tardes largas."
+        },
+        "en": {
+          "nombre": "House cappuccino",
+          "descripcionCorta": "Silky foam with a dusting of bitter cocoa",
+          "descripcionLarga": "Double espresso, silky steamed milk foam and a dusting of bitter cocoa on top. Served in a handmade ceramic cup. The house favorite for long afternoons."
+        },
+        "pt": {
+          "nombre": "Cappuccino da casa",
+          "descripcionCorta": "Espuma sedosa e cacau amargo por cima",
+          "descripcionLarga": "Espresso duplo, leite vaporizado bem sedoso e uma chuva de cacau amargo. Servido em xícara de cerâmica artesanal. O favorito da casa para as tardes longas."
+        }
+      }
+    },
+    {
+      "id": "flat-white",
+      "categoria": "cafes",
+      "precioArs": 5600,
+      "video": "https://videos.pexels.com/video-files/6963730/6963730-sd_360_640_24fps.mp4",
+      "poster": "https://images.pexels.com/videos/6963730/ceramic-cup-ceramic-vase-interior-decor-interior-decoration-6963730.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cheesecake", "croissant"],
+      "tags": ["vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Flat white",
+          "descripcionCorta": "Doble espresso con microespuma cremosa",
+          "descripcionLarga": "Doble ristretto con leche apenas texturizada, sin exceso de espuma. Más café, menos leche: intenso pero aterciopelado. Si venís del cappuccino, este es el siguiente paso."
+        },
+        "en": {
+          "nombre": "Flat white",
+          "descripcionCorta": "Double espresso with creamy microfoam",
+          "descripcionLarga": "Double ristretto with barely-textured milk, no excess foam. More coffee, less milk: intense yet velvety. If you're coming from cappuccino, this is the next step."
+        },
+        "pt": {
+          "nombre": "Flat white",
+          "descripcionCorta": "Espresso duplo com microespuma cremosa",
+          "descripcionLarga": "Ristretto duplo com leite levemente texturizado, sem excesso de espuma. Mais café, menos leite: intenso porém aveludado. Se você vem do cappuccino, este é o próximo passo."
+        }
+      }
+    },
+    {
+      "id": "latte-avena",
+      "categoria": "cafes",
+      "precioArs": 5800,
+      "video": "https://videos.pexels.com/video-files/25311041/11900457_640_360_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/25311041/barista-beverage-breakfast-cafe-25311041.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["medialunas", "torta-chocolate"],
+      "tags": ["vegano", "sinLactosa", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Latte de avena",
+          "descripcionCorta": "Suave, dulzón y 100% a base de plantas",
+          "descripcionLarga": "Espresso con leche de avena texturizada, naturalmente dulce y bien cremosa. Nuestra opción plant-based más pedida. Pedilo con canela por encima, no te vas a arrepentir."
+        },
+        "en": {
+          "nombre": "Oat milk latte",
+          "descripcionCorta": "Smooth, naturally sweet and 100% plant-based",
+          "descripcionLarga": "Espresso with steamed oat milk, naturally sweet and wonderfully creamy. Our most-ordered plant-based option. Ask for a dash of cinnamon on top, you won't regret it."
+        },
+        "pt": {
+          "nombre": "Latte de aveia",
+          "descripcionCorta": "Suave, adocicado e 100% vegetal",
+          "descripcionLarga": "Espresso com leite de aveia vaporizado, naturalmente doce e bem cremoso. Nossa opção plant-based mais pedida. Peça com canela por cima, você não vai se arrepender."
+        }
+      }
+    },
+    {
+      "id": "filtrado",
+      "categoria": "cafes",
+      "precioArs": 5200,
+      "video": "https://videos.pexels.com/video-files/31958773/13617303_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/31958773/cafe-cafe-lifestyle-coffee-making-coffee-31958773.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["torta-frutos-rojos", "cheesecake"],
+      "tags": ["vegano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Filtrado V60",
+          "descripcionCorta": "Café de origen preparado en vertido manual",
+          "descripcionLarga": "Café de origen único preparado en V60, vertido a mano por nuestros baristas. Cambia cada temporada: preguntá qué origen estamos sirviendo hoy. Limpio, frutal y liviano."
+        },
+        "en": {
+          "nombre": "V60 pour-over",
+          "descripcionCorta": "Single-origin coffee, hand poured",
+          "descripcionLarga": "Single-origin coffee brewed in a V60, hand poured by our baristas. It changes every season: ask what origin we're pouring today. Clean, fruity and light-bodied."
+        },
+        "pt": {
+          "nombre": "Filtrado V60",
+          "descripcionCorta": "Café de origem preparado no coador manual",
+          "descripcionLarga": "Café de origem única preparado no V60, coado à mão pelos nossos baristas. Muda a cada estação: pergunte qual origem estamos servindo hoje. Limpo, frutado e leve."
+        }
+      }
+    },
+    {
+      "id": "cold-brew",
+      "categoria": "frias",
+      "precioArs": 5500,
+      "video": "https://videos.pexels.com/video-files/30876061/13202299_640_360_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/30876061/pexels-photo-30876061.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cheesecake", "avo-toast"],
+      "tags": ["frio", "vegano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Cold brew",
+          "descripcionCorta": "Extracción en frío de 18 horas, servido con hielo",
+          "descripcionLarga": "Café extraído en frío durante 18 horas. Resultado: dulzor natural, cero acidez y mucha cafeína. Servido sobre hielo, solo o con un chorrito de leche. El favorito del verano."
+        },
+        "en": {
+          "nombre": "Cold brew",
+          "descripcionCorta": "18-hour cold extraction, served over ice",
+          "descripcionLarga": "Coffee cold-extracted for 18 hours. The result: natural sweetness, zero acidity and plenty of caffeine. Served over ice, on its own or with a splash of milk. The summer favorite."
+        },
+        "pt": {
+          "nombre": "Cold brew",
+          "descripcionCorta": "Extração a frio de 18 horas, servido com gelo",
+          "descripcionLarga": "Café extraído a frio durante 18 horas. Resultado: doçura natural, zero acidez e muita cafeína. Servido com gelo, puro ou com um toque de leite. O favorito do verão."
+        }
+      }
+    },
+    {
+      "id": "iced-latte",
+      "categoria": "frias",
+      "precioArs": 5900,
+      "video": "https://videos.pexels.com/video-files/26871641/12024993_640_360_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/26871641/background-coffee-cold-cook-26871641.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["budin-limon", "croissant"],
+      "tags": ["frio", "vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Iced latte",
+          "descripcionCorta": "Espresso, leche fría y hielo. Simple y perfecto",
+          "descripcionLarga": "Doble espresso volcado sobre leche bien fría y hielo. Refrescante sin perder el carácter del café. Podés pedirlo con leche de avena o un shot extra si el día lo pide."
+        },
+        "en": {
+          "nombre": "Iced latte",
+          "descripcionCorta": "Espresso, cold milk and ice. Simple and perfect",
+          "descripcionLarga": "Double espresso poured over cold milk and ice. Refreshing without losing the coffee's character. Ask for oat milk or an extra shot if the day calls for it."
+        },
+        "pt": {
+          "nombre": "Iced latte",
+          "descripcionCorta": "Espresso, leite gelado e gelo. Simples e perfeito",
+          "descripcionLarga": "Espresso duplo derramado sobre leite bem gelado e gelo. Refrescante sem perder o caráter do café. Peça com leite de aveia ou uma dose extra se o dia pedir."
+        }
+      }
+    },
+    {
+      "id": "iced-caramel",
+      "categoria": "frias",
+      "precioArs": 6400,
+      "video": "https://videos.pexels.com/video-files/32090194/13679110_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/32090194/pexels-photo-32090194.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["torta-chocolate", "alfajor"],
+      "tags": ["frio", "dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Iced caramel cream",
+          "descripcionCorta": "Cold brew con capa de crema y caramelo",
+          "descripcionLarga": "Cold brew coronado con una capa de crema batida ligera y caramelo salado de la casa. Mitad café, mitad postre. Sacale una foto antes de mezclarlo, después es tarde."
+        },
+        "en": {
+          "nombre": "Iced caramel cream",
+          "descripcionCorta": "Cold brew topped with cream and caramel",
+          "descripcionLarga": "Cold brew crowned with a layer of light whipped cream and house-made salted caramel. Half coffee, half dessert. Snap a photo before you mix it, after that it's too late."
+        },
+        "pt": {
+          "nombre": "Iced caramel cream",
+          "descripcionCorta": "Cold brew com camada de creme e caramelo",
+          "descripcionLarga": "Cold brew coroado com uma camada de chantilly leve e caramelo salgado da casa. Metade café, metade sobremesa. Tire uma foto antes de misturar, depois já era."
+        }
+      }
+    },
+    {
+      "id": "limonada",
+      "categoria": "frias",
+      "precioArs": 4800,
+      "video": "https://videos.pexels.com/video-files/36409009/15439118_360_640_60fps.mp4",
+      "poster": "https://images.pexels.com/videos/36409009/pexels-photo-36409009.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["tostado", "avo-toast"],
+      "tags": ["frio", "vegano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Limonada de menta y jengibre",
+          "descripcionCorta": "Recién exprimida, con menta fresca y jengibre",
+          "descripcionLarga": "Limones exprimidos en el momento, menta fresca, un toque de jengibre y endulzada con miel. Sin conservantes ni polvos mágicos. La compañera ideal de cualquier salado."
+        },
+        "en": {
+          "nombre": "Mint & ginger lemonade",
+          "descripcionCorta": "Freshly squeezed, with mint and ginger",
+          "descripcionLarga": "Lemons squeezed to order, fresh mint, a touch of ginger and sweetened with honey. No preservatives, no shortcuts. The perfect companion for anything savory."
+        },
+        "pt": {
+          "nombre": "Limonada de menta e gengibre",
+          "descripcionCorta": "Espremida na hora, com hortelã fresca e gengibre",
+          "descripcionLarga": "Limões espremidos na hora, hortelã fresca, um toque de gengibre e adoçada com mel. Sem conservantes nem atalhos. A companhia ideal de qualquer salgado."
+        }
+      }
+    },
+    {
+      "id": "licuado-frutilla",
+      "categoria": "frias",
+      "precioArs": 6200,
+      "video": "https://videos.pexels.com/video-files/4752363/4752363-sd_534_960_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/4752363/----4752363.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["tostado", "medialunas"],
+      "tags": ["frio", "vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Licuado de frutilla",
+          "descripcionCorta": "Frutillas, banana y yogur natural",
+          "descripcionLarga": "Frutillas frescas licuadas con banana y yogur natural. Espeso como tiene que ser: si sube por el sorbete demasiado fácil, no es un licuado en serio. Podés pedirlo con leche vegetal."
+        },
+        "en": {
+          "nombre": "Strawberry smoothie",
+          "descripcionCorta": "Strawberries, banana and natural yogurt",
+          "descripcionLarga": "Fresh strawberries blended with banana and natural yogurt. Thick the way it should be: if it slides up the straw too easily, it's not a real smoothie. Ask for plant-based milk if you prefer."
+        },
+        "pt": {
+          "nombre": "Vitamina de morango",
+          "descripcionCorta": "Morangos, banana e iogurte natural",
+          "descripcionLarga": "Morangos frescos batidos com banana e iogurte natural. Espessa como tem que ser: se sobe fácil pelo canudo, não é uma vitamina de verdade. Pode pedir com leite vegetal."
+        }
+      }
+    },
+    {
+      "id": "medialunas",
+      "categoria": "pasteleria",
+      "precioArs": 3600,
+      "video": "https://videos.pexels.com/video-files/32710201/13944568_640_360_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/32710201/berlinpexelsmeetup-32710201.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cortado", "espresso"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Medialunas de manteca (x2)",
+          "descripcionCorta": "Hojaldradas, brillantes y recién horneadas",
+          "descripcionLarga": "Dos medialunas de manteca con almíbar, horneadas cada mañana en casa. Crocantes por fuera, tiernas por dentro. El clásico que define a cualquier cafetería que se respete."
+        },
+        "en": {
+          "nombre": "Butter croissants (x2)",
+          "descripcionCorta": "Flaky, glazed and baked this morning",
+          "descripcionLarga": "Two butter croissants brushed with syrup, baked fresh every morning in house. Crisp outside, tender inside. The classic that defines any self-respecting café."
+        },
+        "pt": {
+          "nombre": "Croissants de manteiga (x2)",
+          "descripcionCorta": "Folhados, brilhantes e assados na hora",
+          "descripcionLarga": "Dois croissants de manteiga com calda, assados toda manhã em casa. Crocantes por fora, macios por dentro. O clássico que define qualquer café que se preze."
+        }
+      }
+    },
+    {
+      "id": "croissant",
+      "categoria": "pasteleria",
+      "precioArs": 4400,
+      "video": "https://videos.pexels.com/video-files/8430966/8430966-sd_960_506_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/8430966/pexels-photo-8430966.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cappuccino", "iced-latte"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Croissant francés",
+          "descripcionCorta": "48 horas de fermentación, capas infinitas",
+          "descripcionLarga": "Croissant de masa madre con 48 horas de fermentación en frío y manteca francesa. Cada capa cruje distinto. Pedilo tostado con un poco de dulce de leche si querés tocar el cielo."
+        },
+        "en": {
+          "nombre": "French croissant",
+          "descripcionCorta": "48-hour ferment, endless layers",
+          "descripcionLarga": "Sourdough croissant with a 48-hour cold ferment and French butter. Every layer crackles differently. Ask for it toasted with a bit of dulce de leche if you want to touch the sky."
+        },
+        "pt": {
+          "nombre": "Croissant francês",
+          "descripcionCorta": "48 horas de fermentação, camadas infinitas",
+          "descripcionLarga": "Croissant de fermentação natural com 48 horas de descanso a frio e manteiga francesa. Cada camada estala diferente. Peça torrado com um pouco de doce de leite se quiser tocar o céu."
+        }
+      }
+    },
+    {
+      "id": "torta-chocolate",
+      "categoria": "pasteleria",
+      "precioArs": 7800,
+      "video": "https://videos.pexels.com/video-files/17497298/17497298-sd_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/17497298/chocolate-pastry-foodphotography-17497298.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cappuccino", "iced-caramel"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Torta de chocolate 70%",
+          "descripcionCorta": "Húmeda, intensa, con ganache amargo",
+          "descripcionLarga": "Torta húmeda de chocolate al 70% con ganache amargo y escamas de sal. Sin exageraciones: es la porción que más se pide de toda la carta. Ideal para compartir. O no."
+        },
+        "en": {
+          "nombre": "70% chocolate cake",
+          "descripcionCorta": "Moist, intense, with bitter ganache",
+          "descripcionLarga": "Moist 70% chocolate cake with bitter ganache and sea salt flakes. No exaggeration: it's the most-ordered slice on the whole menu. Great for sharing. Or not."
+        },
+        "pt": {
+          "nombre": "Torta de chocolate 70%",
+          "descripcionCorta": "Úmida, intensa, com ganache amargo",
+          "descripcionLarga": "Torta úmida de chocolate 70% com ganache amargo e flocos de sal. Sem exagero: é a fatia mais pedida de todo o cardápio. Ótima para compartilhar. Ou não."
+        }
+      }
+    },
+    {
+      "id": "cheesecake",
+      "categoria": "pasteleria",
+      "precioArs": 7500,
+      "video": "https://videos.pexels.com/video-files/4547597/4547597-sd_360_640_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/4547597/pexels-photo-4547597.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cold-brew", "flat-white"],
+      "tags": ["dulce", "vegetariano", "sinTacc"],
+      "i18n": {
+        "es": {
+          "nombre": "Cheesecake de maracuyá",
+          "descripcionCorta": "Cremoso, con coulis de maracuyá fresco",
+          "descripcionLarga": "Base de galletitas de manteca, relleno cremoso horneado a baja temperatura y coulis de maracuyá por encima. El contraste ácido-dulce que le va perfecto a un café intenso."
+        },
+        "en": {
+          "nombre": "Passion fruit cheesecake",
+          "descripcionCorta": "Creamy, with fresh passion fruit coulis",
+          "descripcionLarga": "Butter cookie base, creamy filling baked low and slow, topped with fresh passion fruit coulis. The tart-sweet contrast that pairs perfectly with an intense coffee."
+        },
+        "pt": {
+          "nombre": "Cheesecake de maracujá",
+          "descripcionCorta": "Cremoso, com calda de maracujá fresco",
+          "descripcionLarga": "Base de biscoito amanteigado, recheio cremoso assado em baixa temperatura e calda de maracujá por cima. O contraste ácido-doce que combina perfeitamente com um café intenso."
+        }
+      }
+    },
+    {
+      "id": "torta-frutos-rojos",
+      "categoria": "pasteleria",
+      "precioArs": 7900,
+      "video": "https://videos.pexels.com/video-files/30221670/12958105_360_640_60fps.mp4",
+      "poster": "https://images.pexels.com/videos/30221670/artisan-cake-artistic-food-beautiful-cake-cake-30221670.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["filtrado", "cortado"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Postre de frutos rojos",
+          "descripcionCorta": "Chocolate, frambuesas y crema chantilly",
+          "descripcionLarga": "Bizcocho de cacao, crema chantilly liviana y frambuesas frescas de estación. Elegante, fresco y nada empalagoso. El maridaje soñado para un filtrado frutal."
+        },
+        "en": {
+          "nombre": "Red berry dessert",
+          "descripcionCorta": "Chocolate, raspberries and whipped cream",
+          "descripcionLarga": "Cocoa sponge, light whipped cream and fresh seasonal raspberries. Elegant, fresh and never cloying. The dream pairing for a fruity pour-over."
+        },
+        "pt": {
+          "nombre": "Sobremesa de frutas vermelhas",
+          "descripcionCorta": "Chocolate, framboesas e chantilly",
+          "descripcionLarga": "Bolo de cacau, chantilly leve e framboesas frescas da estação. Elegante, fresco e nada enjoativo. A combinação dos sonhos para um filtrado frutado."
+        }
+      }
+    },
+    {
+      "id": "budin-limon",
+      "categoria": "pasteleria",
+      "precioArs": 4100,
+      "video": "https://videos.pexels.com/video-files/9241560/9241560-sd_640_360_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/9241560/baking-breakfast-candy-chocolate-9241560.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["iced-latte", "cold-brew"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Budín de limón y amapolas",
+          "descripcionCorta": "Con glaseado cítrico, receta de la abuela",
+          "descripcionLarga": "Budín húmedo de limón con semillas de amapola y glaseado cítrico. Receta heredada, sin retoques, porque no hacía falta. Va increíble con cualquier bebida fría."
+        },
+        "en": {
+          "nombre": "Lemon poppy seed cake",
+          "descripcionCorta": "Citrus glaze, grandma's recipe",
+          "descripcionLarga": "Moist lemon cake with poppy seeds and a citrus glaze. A family recipe, unchanged, because it didn't need to be. Goes incredibly well with any cold drink."
+        },
+        "pt": {
+          "nombre": "Bolo de limão e papoula",
+          "descripcionCorta": "Com glacê cítrico, receita da vovó",
+          "descripcionLarga": "Bolo úmido de limão com sementes de papoula e glacê cítrico. Receita de família, sem retoques, porque não precisava. Combina muito bem com qualquer bebida gelada."
+        }
+      }
+    },
+    {
+      "id": "alfajor",
+      "categoria": "pasteleria",
+      "precioArs": 3900,
+      "video": "https://videos.pexels.com/video-files/35302276/14956856_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/35302276/ca-phe-35302276.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["espresso", "iced-caramel"],
+      "tags": ["dulce", "vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Alfajor de pistacho",
+          "descripcionCorta": "Relleno de pistacho y baño de chocolate blanco",
+          "descripcionLarga": "Tapas de manteca, relleno de crema de pistacho y baño de chocolate blanco. Edición de la casa: se hacen pocos por día y suelen volar antes de las cinco de la tarde."
+        },
+        "en": {
+          "nombre": "Pistachio alfajor",
+          "descripcionCorta": "Pistachio cream filling, white chocolate coating",
+          "descripcionLarga": "Butter shortbread with pistachio cream filling and a white chocolate coating. A house limited edition: only a few are made each day and they usually sell out by 5pm."
+        },
+        "pt": {
+          "nombre": "Alfajor de pistache",
+          "descripcionCorta": "Recheio de pistache e cobertura de chocolate branco",
+          "descripcionLarga": "Massa amanteigada, recheio de creme de pistache e cobertura de chocolate branco. Edição da casa: fazemos poucos por dia e costumam acabar antes das cinco da tarde."
+        }
+      }
+    },
+    {
+      "id": "tostado",
+      "categoria": "salados",
+      "precioArs": 8900,
+      "video": "https://videos.pexels.com/video-files/8113358/8113358-sd_640_360_24fps.mp4",
+      "poster": "https://images.pexels.com/videos/8113358/pexels-photo-8113358.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["limonada", "licuado-frutilla"],
+      "tags": [],
+      "i18n": {
+        "es": {
+          "nombre": "Tostado de jamón crudo y brie",
+          "descripcionCorta": "En pan de campo, con rúcula y tomates asados",
+          "descripcionLarga": "Pan de campo tostado en plancha, jamón crudo, queso brie fundido, rúcula y tomates asados. Nuestro tostado no compite con el de la esquina: juega otro campeonato."
+        },
+        "en": {
+          "nombre": "Prosciutto & brie toastie",
+          "descripcionCorta": "On country bread, with arugula and roasted tomatoes",
+          "descripcionLarga": "Country bread toasted on the griddle, prosciutto, melted brie, arugula and roasted tomatoes. Our toastie doesn't compete with the corner shop's — it plays a whole other league."
+        },
+        "pt": {
+          "nombre": "Tostado de presunto cru e brie",
+          "descripcionCorta": "Em pão rústico, com rúcula e tomates assados",
+          "descripcionLarga": "Pão rústico tostado na chapa, presunto cru, brie derretido, rúcula e tomates assados. Nosso tostado não compete com o da esquina: joga em outro campeonato."
+        }
+      }
+    },
+    {
+      "id": "avo-toast",
+      "categoria": "salados",
+      "precioArs": 8400,
+      "video": "https://videos.pexels.com/video-files/3986219/3986219-sd_360_640_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/3986219/carot-delicious-green-healthy-3986219.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["cold-brew", "limonada"],
+      "tags": ["vegetariano", "picante"],
+      "i18n": {
+        "es": {
+          "nombre": "Tostón de palta",
+          "descripcionCorta": "Palta, huevo mollet y semillas tostadas",
+          "descripcionLarga": "Pan de masa madre tostado, palta pisada con limón, huevo mollet y mix de semillas tostadas. Fresco, rendidor y con la cantidad justa de picante. Un clásico moderno."
+        },
+        "en": {
+          "nombre": "Avocado toast",
+          "descripcionCorta": "Avocado, soft-boiled egg and toasted seeds",
+          "descripcionLarga": "Toasted sourdough, lime-mashed avocado, a soft-boiled egg and a mix of toasted seeds. Fresh, filling and just the right amount of heat. A modern classic."
+        },
+        "pt": {
+          "nombre": "Torrada de abacate",
+          "descripcionCorta": "Abacate, ovo mollet e sementes tostadas",
+          "descripcionLarga": "Pão de fermentação natural tostado, abacate amassado com limão, ovo mollet e mix de sementes tostadas. Fresco, farto e com o toque certo de picância. Um clássico moderno."
+        }
+      }
+    },
+    {
+      "id": "huevo-pochado",
+      "categoria": "salados",
+      "precioArs": 9200,
+      "video": "https://videos.pexels.com/video-files/11427379/11427379-sd_360_640_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/11427379/boiled-egg-brown-egg-egg-foodphotography-11427379.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["filtrado", "limonada"],
+      "tags": [],
+      "i18n": {
+        "es": {
+          "nombre": "Tostada con huevo pochado",
+          "descripcionCorta": "Huevo pochado, panceta crocante y pan de campo",
+          "descripcionLarga": "Pan de campo, huevo pochado en su punto justo y panceta crocante. Cuando cortás el huevo y la yema cae sobre el pan, entendés por qué es el desayuno más pedido del finde."
+        },
+        "en": {
+          "nombre": "Poached egg toast",
+          "descripcionCorta": "Poached egg, crispy bacon and country bread",
+          "descripcionLarga": "Country bread, a perfectly poached egg and crispy bacon. When you cut the egg and the yolk spills onto the bread, you'll understand why it's the most-ordered weekend breakfast."
+        },
+        "pt": {
+          "nombre": "Torrada com ovo poché",
+          "descripcionCorta": "Ovo poché, bacon crocante e pão rústico",
+          "descripcionLarga": "Pão rústico, ovo poché no ponto certo e bacon crocante. Quando você corta o ovo e a gema escorre sobre o pão, entende por que é o café da manhã mais pedido do fim de semana."
+        }
+      }
+    },
+    {
+      "id": "focaccia",
+      "categoria": "salados",
+      "precioArs": 8600,
+      "video": "https://videos.pexels.com/video-files/6327110/6327110-sd_360_640_25fps.mp4",
+      "poster": "https://images.pexels.com/videos/6327110/pexels-photo-6327110.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["limonada", "cold-brew"],
+      "tags": ["vegetariano"],
+      "i18n": {
+        "es": {
+          "nombre": "Focaccia rellena",
+          "descripcionCorta": "Mozzarella, jamón cocido natural y pesto",
+          "descripcionLarga": "Focaccia de romero rellena con mozzarella, jamón cocido natural y pesto de albahaca. Se corta en el momento y se sirve tibia. Perfecta para compartir mientras decidís el postre."
+        },
+        "en": {
+          "nombre": "Stuffed focaccia",
+          "descripcionCorta": "Mozzarella, natural cooked ham and pesto",
+          "descripcionLarga": "Rosemary focaccia stuffed with mozzarella, natural cooked ham and basil pesto. Sliced to order and served warm. Perfect for sharing while you decide on dessert."
+        },
+        "pt": {
+          "nombre": "Focaccia recheada",
+          "descripcionCorta": "Mussarela, presunto natural e pesto",
+          "descripcionLarga": "Focaccia de alecrim recheada com mussarela, presunto cozido natural e pesto de manjericão. Cortada na hora e servida morna. Perfeita para compartilhar enquanto você decide a sobremesa."
+        }
+      }
+    }
+  ]
+}

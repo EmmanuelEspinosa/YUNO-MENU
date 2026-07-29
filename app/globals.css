@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/*
+  Theming dinámico: --brand y --brand-2 se inyectan inline en <html>
+  desde data/brand.json (ver app/layout.tsx). Todo lo demás se deriva acá.
+*/
+:root {
+  --bg: color-mix(in srgb, var(--brand-2) 82%, black);
+  --card: color-mix(in srgb, var(--brand-2) 90%, white);
+  --card-2: color-mix(in srgb, var(--brand-2) 80%, white);
+  --line: color-mix(in srgb, var(--brand) 20%, transparent);
+  --ink: color-mix(in srgb, var(--brand) 8%, #faf6ef);
+  --muted: color-mix(in srgb, var(--ink) 55%, var(--bg));
+  --on-brand: color-mix(in srgb, var(--brand-2) 88%, black);
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-on-brand: var(--on-brand);
+  --font-display: var(--font-titulos);
+  --font-body: var(--font-cuerpo);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-cuerpo);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-titulos);
+}
+
+/* Animaciones sutiles de entrada */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up 0.5s ease both;
+}
+
+.anim-slide-up {
+  animation: slide-up 0.32s cubic-bezier(0.32, 0.72, 0.22, 1) both;
+}
+
+.anim-fade-in {
+  animation: fade-in 0.25s ease both;
+}
+
+.anim-pop-in {
+  animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Ocultar scrollbar en navs horizontales sin perder scroll */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
