@@ -2,22 +2,22 @@
   "categorias": [
     {
       "id": "cafes",
-      "emoji": "☕",
+      "icono": "coffee",
       "nombre": { "es": "Cafés", "en": "Coffee", "pt": "Cafés" }
     },
     {
       "id": "frias",
-      "emoji": "🧊",
+      "icono": "snowflake",
       "nombre": { "es": "Bebidas frías", "en": "Cold drinks", "pt": "Bebidas geladas" }
     },
     {
       "id": "pasteleria",
-      "emoji": "🥐",
+      "icono": "cake-slice",
       "nombre": { "es": "Pastelería", "en": "Pastries", "pt": "Confeitaria" }
     },
     {
       "id": "salados",
-      "emoji": "🥪",
+      "icono": "hamburger",
       "nombre": { "es": "Salados", "en": "Savory", "pt": "Salgados" }
     }
   ],
@@ -30,6 +30,8 @@
       "poster": "https://images.pexels.com/videos/31264406/breafast-coffee-coffee-making-coffee-making-31264406.jpeg?cs=tinysrgb&dpr=1&w=500",
       "maridajes": ["medialunas", "alfajor"],
       "tags": ["vegano", "sinTacc"],
+      "modelo3d": "/modelos/espresso.glb",
+      "anchoCm": 8,
       "i18n": {
         "es": {
           "nombre": "Espresso Aurora",
@@ -264,6 +266,8 @@
       "poster": "https://images.pexels.com/videos/36409009/pexels-photo-36409009.jpeg?cs=tinysrgb&dpr=1&w=500",
       "maridajes": ["tostado", "avo-toast"],
       "tags": ["frio", "vegano", "sinTacc"],
+      "modelo3d": "/modelos/limonada.glb",
+      "anchoCm": 8,
       "i18n": {
         "es": {
           "nombre": "Limonada de menta y jengibre",
@@ -342,6 +346,8 @@
       "poster": "https://images.pexels.com/videos/8430966/pexels-photo-8430966.jpeg?cs=tinysrgb&dpr=1&w=500",
       "maridajes": ["cappuccino", "iced-latte"],
       "tags": ["dulce", "vegetariano"],
+      "modelo3d": "/modelos/croissant.glb",
+      "anchoCm": 14,
       "i18n": {
         "es": {
           "nombre": "Croissant francés",
@@ -368,6 +374,8 @@
       "poster": "https://images.pexels.com/videos/17497298/chocolate-pastry-foodphotography-17497298.jpeg?cs=tinysrgb&dpr=1&w=500",
       "maridajes": ["cappuccino", "iced-caramel"],
       "tags": ["dulce", "vegetariano"],
+      "modelo3d": "/modelos/torta-chocolate.glb",
+      "anchoCm": 12,
       "i18n": {
         "es": {
           "nombre": "Torta de chocolate 70%",
@@ -498,6 +506,8 @@
       "poster": "https://images.pexels.com/videos/8113358/pexels-photo-8113358.jpeg?cs=tinysrgb&dpr=1&w=500",
       "maridajes": ["limonada", "licuado-frutilla"],
       "tags": [],
+      "modelo3d": "/modelos/tostado.glb",
+      "anchoCm": 15,
       "i18n": {
         "es": {
           "nombre": "Tostado de jamón crudo y brie",

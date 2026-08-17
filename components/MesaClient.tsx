@@ -19,6 +19,7 @@ import SettingsSheet from "./SettingsSheet";
 import OnboardingTutorial, { onboardingYaVisto } from "./OnboardingTutorial";
 import ChatAssistant from "./ChatAssistant";
 import Footer from "./Footer";
+import Icono from "./Icono";
 
 const CLAVE_VISTA = "yuno-vista";
 
@@ -33,7 +34,9 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
   const [wizardAbierto, setWizardAbierto] = useState(false);
   const [settingsAbierto, setSettingsAbierto] = useState(false);
   const [onboardingVisible, setOnboardingVisible] = useState<boolean | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ texto: string; icono?: string } | null>(
+    null
+  );
   const [categoriaActiva, setCategoriaActiva] = useState(categorias[0]?.id);
   const [vista, setVista] = useState<Vista>("moderno");
   const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -74,9 +77,10 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
     [carrito]
   );
   const cantidadItems = carrito.reduce((n, item) => n + item.cantidad, 0);
+  const barraCarritoVisible = cantidadItems > 0 && !wizardAbierto;
 
-  function mostrarToast(mensaje: string) {
-    setToast(mensaje);
+  function mostrarToast(texto: string, icono?: string) {
+    setToast({ texto, icono });
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(null), 3000);
   }
@@ -112,7 +116,7 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
   function pagoCompletado() {
     setCarrito([]);
     setWizardAbierto(false);
-    mostrarToast("🎉");
+    mostrarToast(t("pedidoRecibido"));
   }
 
   return (
@@ -133,10 +137,10 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
           </span>
           <button
             aria-label={t("configuracion")}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-card-2 text-base"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-card-2 text-muted"
             onClick={() => setSettingsAbierto(true)}
           >
-            ⚙️
+            <Icono nombre="cog" size={16} />
           </button>
         </div>
 
@@ -145,14 +149,15 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
           {categorias.map((cat) => (
             <button
               key={cat.id}
-              className={`shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+              className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                 categoriaActiva === cat.id
                   ? "border-brand bg-brand text-on-brand"
                   : "border-line bg-card text-muted"
               }`}
               onClick={() => irACategoria(cat.id)}
             >
-              {cat.emoji} {textoCategoria(cat, idioma)}
+              <Icono nombre={cat.icono} size={15} />
+              {textoCategoria(cat, idioma)}
             </button>
           ))}
         </nav>
@@ -161,7 +166,7 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
       {/* Bienvenida */}
       <section className="anim-fade-up px-5 pt-6">
         <h1 className="font-display text-2xl font-semibold leading-snug">
-          {t("hola")}
+          {t("tituloBienvenida")}
         </h1>
         <p className="mt-1.5 text-sm leading-relaxed text-muted">
           {brand.mensajeBienvenida[idioma]}
@@ -175,8 +180,9 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
           id={`cat-${cat.id}`}
           className="scroll-mt-32 px-5 pt-8"
         >
-          <h2 className="font-display text-xl font-semibold">
-            {cat.emoji} {textoCategoria(cat, idioma)}
+          <h2 className="font-display flex items-center gap-2 text-xl font-semibold">
+            <Icono nombre={cat.icono} size={20} className="text-brand" />
+            {textoCategoria(cat, idioma)}
           </h2>
 
           {vista === "moderno" ? (
@@ -212,20 +218,24 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
       <div className="flex-1" />
       <Footer />
 
-      {/* Botón llamar al mozo */}
+      {/* Botón llamar al mozo — sube solo cuando aparece la barra del carrito */}
       <button
         aria-label={t("llamarMozo")}
-        className="fixed bottom-24 right-4 z-30 flex h-13 w-13 items-center justify-center rounded-full border border-line bg-card-2 p-3.5 text-2xl shadow-xl shadow-black/30 transition-transform active:scale-90"
-        onClick={() => mostrarToast(`${t("mozoNotificado")} ${mesaId}`)}
+        className="fixed right-4 z-30 flex h-13 w-13 items-center justify-center rounded-full border border-line bg-card-2 shadow-xl shadow-black/30 transition-all duration-300 active:scale-90"
+        style={{ bottom: barraCarritoVisible ? 80 : 24 }}
+        onClick={() => mostrarToast(`${t("mozoNotificado")} ${mesaId}`, "bell")}
       >
-        🛎️
+        <Icono nombre="bell" size={22} />
       </button>
 
       {/* Chat asistente */}
-      <ChatAssistant onVerProducto={setSeleccionado} />
+      <ChatAssistant
+        onVerProducto={setSeleccionado}
+        carritoVisible={barraCarritoVisible}
+      />
 
       {/* Barra de carrito */}
-      {cantidadItems > 0 && !wizardAbierto && (
+      {barraCarritoVisible && (
         <div className="fixed inset-x-0 bottom-0 z-30 mx-auto max-w-md bg-gradient-to-t from-bg via-bg/95 to-transparent p-4 pt-8">
           <button
             className="anim-fade-up flex w-full items-center justify-between rounded-2xl bg-brand px-5 py-4 text-base font-semibold text-on-brand shadow-lg shadow-black/30 transition-transform active:scale-[0.97]"
@@ -256,6 +266,10 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
         <SettingsSheet
           vista={vista}
           onCambiarVista={cambiarVista}
+          onVerTutorial={() => {
+            setSettingsAbierto(false);
+            setOnboardingVisible(true);
+          }}
           onCerrar={() => setSettingsAbierto(false)}
         />
       )}
@@ -277,8 +291,15 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
       {/* Toast */}
       {toast && (
         <div className="anim-fade-up fixed inset-x-4 top-4 z-[70] mx-auto max-w-md">
-          <div className="rounded-2xl border border-line bg-card-2 px-4 py-3 text-center text-sm font-medium shadow-2xl shadow-black/40">
-            {toast}
+          <div className="flex items-center justify-center gap-2 rounded-2xl border border-line bg-card-2 px-4 py-3 text-center text-sm font-medium shadow-2xl shadow-black/40">
+            {toast.icono && (
+              <Icono
+                nombre={toast.icono}
+                size={16}
+                className="shrink-0 text-brand"
+              />
+            )}
+            {toast.texto}
           </div>
         </div>
       )}

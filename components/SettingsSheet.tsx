@@ -4,14 +4,21 @@ import { config } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useMoneda } from "@/lib/moneda";
 import type { Vista } from "@/lib/tipos";
+import Icono from "./Icono";
 
 type Props = {
   vista: Vista;
   onCambiarVista: (v: Vista) => void;
+  onVerTutorial: () => void;
   onCerrar: () => void;
 };
 
-export default function SettingsSheet({ vista, onCambiarVista, onCerrar }: Props) {
+export default function SettingsSheet({
+  vista,
+  onCambiarVista,
+  onVerTutorial,
+  onCerrar,
+}: Props) {
   const { idioma, setIdioma } = useIdioma();
   const { moneda, setMoneda } = useMoneda();
   const t = useT();
@@ -106,6 +113,24 @@ export default function SettingsSheet({ vista, onCambiarVista, onCerrar }: Props
             </button>
           </div>
         </section>
+
+        {/* Reabrir el tutorial: red de seguridad si el cliente lo salteó */}
+        <button
+          onClick={onVerTutorial}
+          className="mt-6 flex w-full items-center gap-3 rounded-2xl border border-line bg-card-2 px-4 py-3.5 text-left transition-transform active:scale-[0.98]"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand">
+            <Icono nombre="help-circle" size={18} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-semibold">
+              {t("comoFunciona")}
+            </span>
+            <span className="block text-xs text-muted">
+              {t("comoFuncionaDetalle")}
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   );

@@ -12,13 +12,13 @@
   ],
   "monedaPorDefecto": "ARS",
   "tags": [
-    { "id": "picante", "emoji": "🌶️", "label": { "es": "Picante", "en": "Spicy", "pt": "Picante" } },
-    { "id": "frio", "emoji": "🧊", "label": { "es": "Frío", "en": "Cold", "pt": "Gelado" } },
-    { "id": "sinTacc", "emoji": "🌾", "label": { "es": "Sin TACC", "en": "Gluten free", "pt": "Sem glúten" } },
-    { "id": "vegano", "emoji": "🌱", "label": { "es": "Vegano", "en": "Vegan", "pt": "Vegano" } },
-    { "id": "vegetariano", "emoji": "🥗", "label": { "es": "Vegetariano", "en": "Vegetarian", "pt": "Vegetariano" } },
-    { "id": "sinLactosa", "emoji": "🥛", "label": { "es": "Sin lactosa", "en": "Dairy free", "pt": "Sem lactose" } },
-    { "id": "dulce", "emoji": "🍯", "label": { "es": "Dulce", "en": "Sweet", "pt": "Doce" } },
-    { "id": "conAlcohol", "emoji": "🍷", "label": { "es": "Con alcohol", "en": "Contains alcohol", "pt": "Contém álcool" } }
+    { "id": "picante", "icono": "flame", "label": { "es": "Picante", "en": "Spicy", "pt": "Picante" } },
+    { "id": "frio", "icono": "snowflake", "label": { "es": "Frío", "en": "Cold", "pt": "Gelado" } },
+    { "id": "sinTacc", "icono": "wheat-off", "label": { "es": "Sin TACC", "en": "Gluten free", "pt": "Sem glúten" } },
+    { "id": "vegano", "icono": "vegan", "label": { "es": "Vegano", "en": "Vegan", "pt": "Vegano" } },
+    { "id": "vegetariano", "icono": "beef-off", "label": { "es": "Vegetariano", "en": "Vegetarian", "pt": "Vegetariano" } },
+    { "id": "sinLactosa", "icono": "milk-off", "label": { "es": "Sin lactosa", "en": "Dairy free", "pt": "Sem lactose" } },
+    { "id": "dulce", "icono": "candy", "label": { "es": "Dulce", "en": "Sweet", "pt": "Doce" } },
+    { "id": "conAlcohol", "icono": "wine", "label": { "es": "Con alcohol", "en": "Contains alcohol", "pt": "Contém álcool" } }
   ]
 }

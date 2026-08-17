@@ -1,11 +1,12 @@
 {
-  "nombre": "Café Aurora",
+  "nombre": "Yuno Menu",
   "logo": "/logo.svg",
   "colorPrimario": "#D9A05B",
   "colorSecundario": "#221812",
   "tipografia": {
-    "titulos": "Fraunces",
-    "cuerpo": "DM Sans"
+    "titulos": "Spectral",
+    "titulosItalic": true,
+    "cuerpo": "Work Sans"
   },
   "mensajeBienvenida": {
     "es": "Mirá el menú, pedí desde tu mesa y dejá que nuestra IA te sugiera el maridaje perfecto.",

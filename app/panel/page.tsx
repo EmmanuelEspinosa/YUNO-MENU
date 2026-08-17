@@ -56,9 +56,9 @@ export default function PanelPage() {
       {/* KPI principal */}
       <section className="anim-fade-up mt-6 rounded-3xl border border-brand/40 bg-card p-5">
         <p className="text-xs font-medium uppercase tracking-widest text-muted">
-          ✨ Venta adicional generada por sugerencias de la IA
+          Venta adicional generada por sugerencias de la IA
         </p>
-        <p className="font-display mt-2 text-4xl font-semibold text-brand">
+        <p className="mt-2 text-4xl font-semibold text-brand">
           {formatearPrecio(ventaAdicionalMes)}
         </p>
         <p className="mt-1 text-sm text-muted">
@@ -70,13 +70,13 @@ export default function PanelPage() {
       <section className="anim-fade-up mt-4 grid grid-cols-2 gap-4">
         <div className="rounded-3xl border border-line bg-card p-4">
           <p className="text-xs text-muted">Ticket promedio sin IA</p>
-          <p className="font-display mt-1 text-2xl font-semibold">
+          <p className="mt-1 text-2xl font-semibold">
             {formatearPrecio(ticketSinIA)}
           </p>
         </div>
         <div className="rounded-3xl border border-brand/40 bg-card p-4">
           <p className="text-xs text-muted">Ticket promedio con IA</p>
-          <p className="font-display mt-1 text-2xl font-semibold text-brand">
+          <p className="mt-1 text-2xl font-semibold text-brand">
             {formatearPrecio(ticketConIA)}
           </p>
           <p className="mt-1 text-xs font-semibold text-brand">

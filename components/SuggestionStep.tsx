@@ -5,6 +5,7 @@ import type { Producto } from "@/lib/tipos";
 import { textoProducto } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
+import Icono from "./Icono";
 
 type Props = {
   sugerencia: { base: Producto; maridaje: Producto } | null;
@@ -14,9 +15,9 @@ type Props = {
 };
 
 const sinSugerencia = {
-  es: "Tu pedido ya está completo 🙌",
-  en: "Your order already looks great 🙌",
-  pt: "Seu pedido já está completo 🙌",
+  es: "Tu pedido ya está completo",
+  en: "Your order already looks great",
+  pt: "Seu pedido já está completo",
 };
 
 export default function SuggestionStep({
@@ -40,8 +41,9 @@ export default function SuggestionStep({
 
   return (
     <div className="anim-fade-up flex min-h-[70dvh] flex-col items-center justify-center px-2 text-center">
-      <span className="text-xs font-semibold uppercase tracking-widest text-brand">
-        ✨ {t("pasoSugerencia")}
+      <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand">
+        <Icono nombre="wand-sparkles" size={14} />
+        {t("pasoSugerencia")}
       </span>
 
       {pensando ? (
@@ -60,7 +62,10 @@ export default function SuggestionStep({
             alt=""
             className="mx-auto h-32 w-32 rounded-3xl border border-line object-cover shadow-lg shadow-black/20"
           />
-          <p className="font-display mt-4 text-xl font-semibold">{frase}</p>
+          <p className="font-display mt-4 flex items-center justify-center gap-2 text-xl font-semibold">
+            <Icono nombre="sparkles" size={18} className="text-brand" />
+            {frase}
+          </p>
           <p className="mt-1 text-sm text-muted">{texto.nombre}</p>
 
           {agregado ? (

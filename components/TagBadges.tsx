@@ -2,6 +2,7 @@
 
 import { buscarTag } from "@/lib/datos";
 import { useIdioma } from "@/lib/i18n";
+import Icono from "./Icono";
 
 export default function TagBadges({
   tags,
@@ -23,7 +24,7 @@ export default function TagBadges({
             key={id}
             className="inline-flex items-center gap-1 rounded-full border border-line bg-card-2 px-2 py-0.5 text-[11px] font-medium text-muted"
           >
-            <span>{tag.emoji}</span>
+            <Icono nombre={tag.icono} size={12} />
             {tag.label[idioma]}
           </span>
         );

@@ -117,7 +117,55 @@ real), copiá la URL del MP4 en calidad **SD (~640px)** y una imagen de portada,
 y pegalas en `video`/`poster`. También podés subirlos a `public/videos/` y usar
 rutas locales. Mantenelos cortos (5–15 s) y livianos (< 3 MB).
 
-### 5. Deployar en Vercel
+### 5. Agregar vista 3D a un producto (opcional)
+
+Un producto muestra el botón **"Ver en 3D"** solo si tiene estos dos campos:
+
+```json
+{
+  "modelo3d": "/modelos/mi-plato.glb",
+  "anchoCm": 24
+}
+```
+
+- **`modelo3d`**: ruta a un `.glb` dentro de `public/modelos/`.
+- **`anchoCm`**: ancho real del plato en centímetros. Hace dos cosas: se le
+  muestra al cliente ("Tamaño real: 24 cm") y **escala el modelo a tamaño real**.
+
+> ⚠️ **Lo más importante de esta función.** Los `.glb` no traen una escala
+> confiable: el modelo de prueba mide 112 "metros" de ancho. Sin corregirlo, el
+> AR pondría un plato del tamaño de una cancha sobre la mesa. Por eso el visor
+> **normaliza el modelo al `anchoCm` declarado**, sin importar en qué unidades
+> venga. Si el `anchoCm` está mal, la promesa de "ver el tamaño real" se rompe:
+> **medí el plato de verdad antes de cargarlo.**
+
+#### De dónde sacar los modelos
+
+| Opción | Cómo | Cuándo conviene |
+| --- | --- | --- |
+| **Fotogrametría** | Apps como Polycam o Luma AI: das una vuelta alrededor del plato con el celular | La mejor para vender: son *los platos reales del local* |
+| **IA generativa** | Meshy, Tripo | Rápido y barato para armar la demo |
+| **Comprar** | Sketchfab, TurboSquid | Rápido, pero genérico |
+
+#### Cuidar el peso
+
+El peso de un modelo de comida está en **las texturas, no en la geometría**
+(comprobado: un modelo de 8 MB tenía 7,9 MB en 3 imágenes PNG). Bajá las
+texturas a 1024 px o 2048 px y apuntá a **menos de 2 MB por modelo**. El visor
+solo se descarga cuando el cliente toca "Ver en 3D", nunca en la carga inicial.
+
+#### Realidad aumentada (el botón "Verlo en tu mesa")
+
+- Requiere **HTTPS** — en Netlify ya lo tenés. En `localhost` el AR no arranca.
+- **Android** (ARCore): usa el `.glb` directo.
+- **iPhone** (ARKit): iOS solo hace AR con archivos `.usdz`, pero **no hace falta
+  generarlos**: model-viewer lo convierte solo a partir del `.glb`. El campo
+  `iosSrc` del visor queda disponible por si algún día querés entregar un `.usdz`
+  hecho a mano, con mejor terminación.
+- En celulares viejos sin ARCore/ARKit el botón no aparece, pero el 3D normal
+  (girar con el dedo) igual funciona.
+
+### 6. Deployar en Vercel
 
 ```bash
 npm i -g vercel
@@ -127,7 +175,7 @@ vercel --prod
 O conectá el repo en [vercel.com/new](https://vercel.com/new). **No hay
 variables de entorno que configurar.**
 
-### 6. Generar los QR de las mesas
+### 7. Generar los QR de las mesas
 
 Cada mesa apunta a su propia URL (`https://tu-demo.vercel.app/mesa/1`, `/mesa/2`,
 ...). Generá un QR por mesa e imprimilos. El número de mesa se toma directo de
@@ -156,6 +204,9 @@ la URL — el cliente nunca lo tipea.
 - **Onboarding**: 3 slides de una frase cada uno, se ve una sola vez
   (`localStorage`), con botón "Saltar" siempre visible.
 - **Footer**: solo íconos de redes sociales, nada de mapa ni dirección.
+- **Vista 3D + AR**: en los productos que tengan modelo, el cliente puede girar
+  el plato con el dedo y verlo **a tamaño real sobre su mesa** con realidad
+  aumentada. Resuelve el "no sabía que la porción era tan chica". Ver el paso 5.
 
 ## Qué está simulado (y cómo)
 

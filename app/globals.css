@@ -41,6 +41,7 @@ body {
 
 .font-display {
   font-family: var(--font-titulos);
+  font-style: var(--font-titulos-style, normal);
 }
 
 /* Animaciones sutiles de entrada */

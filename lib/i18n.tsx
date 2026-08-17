@@ -14,7 +14,11 @@ import type { Idioma } from "./tipos";
 const CLAVE = "yuno-idioma";
 
 const strings = {
-  hola: { es: "Hola 👋", en: "Hi there 👋", pt: "Olá 👋" },
+  tituloBienvenida: {
+    es: "Bienvenido a la carta",
+    en: "Welcome to the menu",
+    pt: "Bem-vindo ao cardápio",
+  },
   mesa: { es: "Mesa", en: "Table", pt: "Mesa" },
   verPedido: { es: "Ver pedido", en: "View order", pt: "Ver pedido" },
   agregar: { es: "Agregar", en: "Add", pt: "Adicionar" },
@@ -25,9 +29,14 @@ const strings = {
   },
   llamarMozo: { es: "Llamar al mozo", en: "Call the waiter", pt: "Chamar o garçom" },
   mozoNotificado: {
-    es: "🔔 El mozo fue notificado — Mesa",
-    en: "🔔 The waiter has been notified — Table",
-    pt: "🔔 O garçom foi avisado — Mesa",
+    es: "El mozo fue notificado — Mesa",
+    en: "The waiter has been notified — Table",
+    pt: "O garçom foi avisado — Mesa",
+  },
+  pedidoRecibido: {
+    es: "Pedido recibido",
+    en: "Order received",
+    pt: "Pedido recebido",
   },
   agregadoAlPedido: {
     es: "agregado al pedido",
@@ -70,6 +79,30 @@ const strings = {
     pt: "Obrigado pela visita",
   },
   configuracion: { es: "Preferencias", en: "Preferences", pt: "Preferências" },
+  ver3d: { es: "Ver en 3D", en: "View in 3D", pt: "Ver em 3D" },
+  verVideo: { es: "Ver video", en: "Watch video", pt: "Ver vídeo" },
+  cargando3d: { es: "Cargando 3D…", en: "Loading 3D…", pt: "Carregando 3D…" },
+  error3d: {
+    es: "No pudimos cargar la vista 3D.",
+    en: "We couldn't load the 3D view.",
+    pt: "Não conseguimos carregar a vista 3D.",
+  },
+  verEnTuMesa: {
+    es: "Verlo en tu mesa",
+    en: "View on your table",
+    pt: "Ver na sua mesa",
+  },
+  tamanoReal: { es: "Tamaño real", en: "Actual size", pt: "Tamanho real" },
+  comoFunciona: {
+    es: "¿Cómo funciona?",
+    en: "How it works",
+    pt: "Como funciona",
+  },
+  comoFuncionaDetalle: {
+    es: "Volvé a ver el tutorial",
+    en: "See the tutorial again",
+    pt: "Ver o tutorial de novo",
+  },
   idioma: { es: "Idioma", en: "Language", pt: "Idioma" },
   moneda: { es: "Moneda", en: "Currency", pt: "Moeda" },
   vistaMenu: { es: "Vista del menú", en: "Menu view", pt: "Visualização do cardápio" },

@@ -35,9 +35,21 @@ export function textoCategoria(categoria: Categoria, idioma: Idioma): string {
   return categoria.nombre[idioma];
 }
 
+const PESOS = [400, 500, 600, 700];
+
 export function urlGoogleFonts(): string {
-  const familias = [brand.tipografia.titulos, brand.tipografia.cuerpo]
-    .map((f) => `family=${f.trim().replace(/ /g, "+")}:wght@400;500;600;700`)
+  const familias = [
+    { nombre: brand.tipografia.titulos, italic: !!brand.tipografia.titulosItalic },
+    { nombre: brand.tipografia.cuerpo, italic: false },
+  ]
+    .map(({ nombre, italic }) => {
+      const familia = nombre.trim().replace(/ /g, "+");
+      // Con itálica solo pedimos ese eje (ital=1): los títulos nunca van en redonda.
+      const ejes = italic
+        ? `ital,wght@${PESOS.map((p) => `1,${p}`).join(";")}`
+        : `wght@${PESOS.join(";")}`;
+      return `family=${familia}:${ejes}`;
+    })
     .join("&");
   return `https://fonts.googleapis.com/css2?${familias}&display=swap`;
 }

@@ -23,6 +23,7 @@ export default function RootLayout({
     "--brand": brand.colorPrimario,
     "--brand-2": brand.colorSecundario,
     "--font-titulos": `"${brand.tipografia.titulos}", serif`,
+    "--font-titulos-style": brand.tipografia.titulosItalic ? "italic" : "normal",
     "--font-cuerpo": `"${brand.tipografia.cuerpo}", system-ui, sans-serif`,
   } as React.CSSProperties;
 

@@ -18,7 +18,8 @@ export type ConfigMoneda = {
 
 export type ConfigTag = {
   id: string;
-  emoji: string;
+  /** Nombre del ícono en lucide.dev, en kebab-case (ej: "wheat-off"). */
+  icono: string;
   label: TextoI18n;
 };
 
@@ -32,7 +33,8 @@ export type Config = {
 
 export type Categoria = {
   id: string;
-  emoji: string;
+  /** Nombre del ícono en lucide.dev, en kebab-case (ej: "cake-slice"). */
+  icono: string;
   nombre: TextoI18n;
 };
 
@@ -50,6 +52,14 @@ export type Producto = {
   poster: string;
   maridajes: string[];
   tags: string[];
+  /** Ruta al modelo .glb. Si falta, el producto simplemente no ofrece vista 3D. */
+  modelo3d?: string;
+  /**
+   * Ancho real del plato en centímetros. Cumple dos funciones: se muestra al
+   * cliente y se usa para escalar el modelo a tamaño real, que es lo que hace
+   * que el AR sirva para dimensionar la porción.
+   */
+  anchoCm?: number;
   i18n: Record<Idioma, ProductoTexto>;
 };
 
@@ -60,6 +70,8 @@ export type Brand = {
   colorSecundario: string;
   tipografia: {
     titulos: string;
+    /** Si es true, los títulos se renderizan en itálica y solo se cargan esas variantes. */
+    titulosItalic?: boolean;
     cuerpo: string;
   };
   mensajeBienvenida: TextoI18n;

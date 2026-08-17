@@ -4,24 +4,24 @@ import { buscarProducto } from "./datos";
 // Frases ultra cortas para el paso 2 del wizard: nada de explicaciones largas.
 const frases: Record<Idioma, string[]> = {
   es: [
-    "Buena combinación ✨",
-    "Un final dulce 🍰",
+    "Buena combinación",
+    "Un final dulce",
     "Combo perfecto",
     "Se completa con esto",
     "El clásico de la casa",
     "Nunca falla",
   ],
   en: [
-    "Great combo ✨",
-    "A sweet finish 🍰",
+    "Great combo",
+    "A sweet finish",
     "Perfect pairing",
     "Completes the order",
     "House classic",
     "Never fails",
   ],
   pt: [
-    "Ótima combinação ✨",
-    "Um final doce 🍰",
+    "Ótima combinação",
+    "Um final doce",
     "Combo perfeito",
     "Completa o pedido",
     "Clássico da casa",

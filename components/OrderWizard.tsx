@@ -7,6 +7,7 @@ import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
 import { elegirSugerenciaParaCarrito, generarFraseCorta } from "@/lib/sugerencias";
 import SuggestionStep from "./SuggestionStep";
+import Icono from "./Icono";
 
 type Props = {
   mesaId: string;
@@ -55,9 +56,9 @@ export default function OrderWizard({
   const [fraseSugerencia] = useState(() => generarFraseCorta(idioma));
 
   const pasos = [
-    { label: t("pasoProductos"), emoji: "🧾" },
-    { label: t("pasoSugerencia"), emoji: "✨" },
-    { label: t("pasoPago"), emoji: "💳" },
+    { label: t("pasoProductos"), icono: "scroll-text" },
+    { label: t("pasoSugerencia"), icono: "wand-sparkles" },
+    { label: t("pasoPago"), icono: "credit-card" },
   ];
 
   function confirmarPago() {
@@ -99,7 +100,7 @@ export default function OrderWizard({
                       : "border-line bg-card-2 text-muted"
                 }`}
               >
-                <span className="text-base leading-none">{p.emoji}</span>
+                <Icono nombre={p.icono} size={17} />
                 {p.label}
               </div>
             ))}
@@ -154,7 +155,7 @@ export default function OrderWizard({
 
             <div className="mt-4 flex items-center justify-between px-1">
               <span className="text-muted">{t("total")}</span>
-              <span className="font-display text-2xl font-semibold text-brand">
+              <span className="text-2xl font-semibold text-brand">
                 {formatear(subtotal)}
               </span>
             </div>
@@ -240,7 +241,7 @@ export default function OrderWizard({
                   )}
                   <li className="flex justify-between py-2.5 font-semibold">
                     <span>{t("total")}</span>
-                    <span className="font-display text-brand">
+                    <span className="text-brand">
                       {formatear(propina === "efectivo" ? subtotal : total)}
                     </span>
                   </li>
@@ -290,8 +291,8 @@ export default function OrderWizard({
             {etapaPago === "aprobado" && (
               <div className="anim-fade-up flex min-h-[85dvh] flex-col justify-center">
                 <div className="text-center">
-                  <div className="anim-pop-in mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand/15 text-4xl">
-                    ✅
+                  <div className="anim-pop-in mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand/15 text-brand">
+                    <Icono nombre="badge-check" size={40} />
                   </div>
                   <h1 className="font-display mt-5 text-3xl font-semibold">
                     {t("pagoAprobado")}

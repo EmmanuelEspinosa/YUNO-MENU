@@ -6,6 +6,7 @@ import { textoProducto } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
 import { responderAsistente } from "@/lib/asistente";
+import Icono from "./Icono";
 
 type Mensaje = {
   rol: "usuario" | "ia";
@@ -15,8 +16,10 @@ type Mensaje = {
 
 export default function ChatAssistant({
   onVerProducto,
+  carritoVisible,
 }: {
   onVerProducto: (producto: Producto) => void;
+  carritoVisible: boolean;
 }) {
   const { idioma } = useIdioma();
   const t = useT();
@@ -52,10 +55,11 @@ export default function ChatAssistant({
     <>
       <button
         aria-label={t("asistente")}
-        className="fixed bottom-40 right-4 z-30 flex h-13 w-13 items-center justify-center rounded-full bg-brand p-3.5 text-2xl text-on-brand shadow-xl shadow-black/30 transition-transform active:scale-90"
+        className="fixed right-4 z-30 flex h-13 w-13 items-center justify-center rounded-full bg-brand text-on-brand shadow-xl shadow-black/30 transition-all duration-300 active:scale-90"
+        style={{ bottom: carritoVisible ? 148 : 92 }}
         onClick={() => setAbierto(true)}
       >
-        ✨
+        <Icono nombre="wand-sparkles" size={22} />
       </button>
 
       {abierto && (
@@ -66,8 +70,9 @@ export default function ChatAssistant({
           />
           <div className="anim-slide-up absolute inset-x-0 bottom-0 flex h-[80dvh] flex-col rounded-t-3xl border-t border-line bg-card">
             <div className="flex items-center justify-between border-b border-line px-5 py-4">
-              <h2 className="font-display text-lg font-semibold">
-                ✨ {t("asistente")}
+              <h2 className="font-display flex items-center gap-2 text-lg font-semibold">
+                <Icono nombre="wand-sparkles" size={18} className="text-brand" />
+                {t("asistente")}
               </h2>
               <button
                 aria-label={t("cerrar")}
