@@ -115,6 +115,11 @@ const strings = {
     en: "Ask something about the menu…",
     pt: "Pergunte algo do cardápio…",
   },
+  probaPreguntando: {
+    es: "Probá preguntando:",
+    en: "Try asking:",
+    pt: "Experimente perguntar:",
+  },
   asistenteBienvenida: {
     es: "¡Hola! Preguntame sobre ingredientes, alergias, precios o pedime una recomendación.",
     en: "Hi! Ask me about ingredients, allergies, prices, or ask for a recommendation.",

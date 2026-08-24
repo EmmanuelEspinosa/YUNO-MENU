@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { brand } from "@/lib/datos";
 import type { Evento } from "@/lib/eventos";
+import { activarSonido, sonarCampanilla } from "@/lib/sonido";
 import Icono from "@/components/Icono";
 
 /**
@@ -60,6 +61,9 @@ export default function CocinaPage() {
   const vistos = useRef<Set<string>>(new Set());
   const primeraCarga = useRef(true);
   const [destacados, setDestacados] = useState<Set<string>>(new Set());
+  const [conSonido, setConSonido] = useState(false);
+  // En una ref además del estado: lo lee el intervalo, que no se recrea.
+  const sonidoRef = useRef(false);
 
   const consultar = useCallback(async () => {
     try {
@@ -75,6 +79,7 @@ export default function CocinaPage() {
       nuevos.forEach((e) => vistos.current.add(e.id));
 
       if (!primeraCarga.current && recienLlegados.length > 0) {
+        if (sonidoRef.current) sonarCampanilla();
         setDestacados((prev) => new Set([...prev, ...recienLlegados]));
         setTimeout(() => {
           setDestacados((prev) => {
@@ -101,6 +106,19 @@ export default function CocinaPage() {
       clearInterval(reloj);
     };
   }, [consultar]);
+
+  async function alternarSonido() {
+    if (conSonido) {
+      sonidoRef.current = false;
+      setConSonido(false);
+      return;
+    }
+    // El navegador solo permite audio a partir de un gesto de la persona.
+    const ok = await activarSonido();
+    sonidoRef.current = ok;
+    setConSonido(ok);
+    if (ok) sonarCampanilla();
+  }
 
   async function limpiar() {
     await fetch("/api/eventos", { method: "DELETE" });
@@ -139,6 +157,20 @@ export default function CocinaPage() {
           />
           {conectado === false ? "sin conexión" : "en vivo"}
         </span>
+
+        <button
+          onClick={alternarSonido}
+          aria-pressed={conSonido}
+          title={conSonido ? "Silenciar" : "Activar sonido"}
+          className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-transform active:scale-95 ${
+            conSonido
+              ? "border-brand bg-brand text-on-brand"
+              : "border-line bg-card text-muted"
+          }`}
+        >
+          <Icono nombre={conSonido ? "volume-2" : "volume-x"} size={14} />
+          {conSonido ? "Sonido" : "Sin sonido"}
+        </button>
 
         <button
           onClick={limpiar}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Producto } from "@/lib/tipos";
+import type { Idioma, Producto } from "@/lib/tipos";
 import { textoProducto } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
@@ -12,6 +12,33 @@ type Mensaje = {
   rol: "usuario" | "ia";
   texto: string;
   productos?: Producto[];
+};
+
+/**
+ * Preguntas sugeridas. No son decorativas: guían al cliente hacia lo que el
+ * motor de respuestas resuelve bien (tags, categorías, recomendación). Sin
+ * esto, la primera pregunta suele ser algo que no entiende y la función queda
+ * mal parada justo en el momento de mayor atención.
+ */
+const sugeridas: Record<Idioma, string[]> = {
+  es: [
+    "¿Tienen algo sin gluten?",
+    "¿Qué opciones veganas hay?",
+    "Quiero algo frío",
+    "¿Qué me recomendás?",
+  ],
+  en: [
+    "Anything gluten free?",
+    "What vegan options are there?",
+    "I want something cold",
+    "What do you recommend?",
+  ],
+  pt: [
+    "Tem algo sem glúten?",
+    "Quais opções veganas tem?",
+    "Quero algo gelado",
+    "O que você recomenda?",
+  ],
 };
 
 export default function ChatAssistant({
@@ -39,17 +66,20 @@ export default function ChatAssistant({
     finRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [mensajes, abierto]);
 
-  function enviar() {
-    const texto = input.trim();
-    if (!texto) return;
-    const respuesta = responderAsistente(texto, idioma);
+  function preguntar(texto: string) {
+    const limpio = texto.trim();
+    if (!limpio) return;
+    const respuesta = responderAsistente(limpio, idioma);
     setMensajes((prev) => [
       ...prev,
-      { rol: "usuario", texto },
+      { rol: "usuario", texto: limpio },
       { rol: "ia", texto: respuesta.texto, productos: respuesta.productos },
     ]);
     setInput("");
   }
+
+  // Las sugerencias solo mientras no haya preguntado nada todavía.
+  const mostrarSugerencias = !mensajes.some((m) => m.rol === "usuario");
 
   return (
     <>
@@ -130,6 +160,25 @@ export default function ChatAssistant({
                   </div>
                 </div>
               ))}
+              {mostrarSugerencias && (
+                <div className="anim-fade-up pt-1">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted">
+                    {t("probaPreguntando")}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {sugeridas[idioma].map((pregunta) => (
+                      <button
+                        key={pregunta}
+                        onClick={() => preguntar(pregunta)}
+                        className="rounded-full border border-brand/40 bg-brand/10 px-3 py-1.5 text-xs font-medium text-brand transition-transform active:scale-95"
+                      >
+                        {pregunta}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div ref={finRef} />
             </div>
 
@@ -137,13 +186,13 @@ export default function ChatAssistant({
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && enviar()}
+                onKeyDown={(e) => e.key === "Enter" && preguntar(input)}
                 placeholder={t("asistentePlaceholder")}
                 className="flex-1 rounded-full border border-line bg-card-2 px-4 py-2.5 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
               />
               <button
                 aria-label={t("continuar")}
-                onClick={enviar}
+                onClick={() => preguntar(input)}
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-lg text-on-brand transition-transform active:scale-90"
               >
                 ➤
