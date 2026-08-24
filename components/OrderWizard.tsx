@@ -6,6 +6,7 @@ import { brand, buscarProducto, textoProducto } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
 import { elegirSugerenciaParaCarrito, generarFraseCorta } from "@/lib/sugerencias";
+import { avisarPedidoYPago } from "@/lib/integracion";
 import SuggestionStep from "./SuggestionStep";
 import Icono from "./Icono";
 
@@ -63,6 +64,31 @@ export default function OrderWizard({
 
   function confirmarPago() {
     setEtapaPago("procesando");
+
+    // Cocina necesita el detalle del pedido; caja, el cobro.
+    const items = carrito
+      .map((item) => {
+        const producto = buscarProducto(item.id);
+        if (!producto) return null;
+        return {
+          id: producto.id,
+          nombre: textoProducto(producto, idioma).nombre,
+          cantidad: item.cantidad,
+          precioArs: producto.precioArs,
+        };
+      })
+      .filter((i) => i !== null);
+
+    avisarPedidoYPago(
+      mesaId,
+      items,
+      subtotal,
+      propina === "efectivo" ? subtotal : total,
+      montoPropina,
+      propina === "efectivo" ? "efectivo" : "tarjeta",
+      observaciones || undefined
+    );
+
     setTimeout(() => {
       setOperacion(`YU-${Math.floor(10000 + Math.random() * 89999)}`);
       setEtapaPago("aprobado");

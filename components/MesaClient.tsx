@@ -11,6 +11,7 @@ import {
 } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
+import { avisarMozo } from "@/lib/integracion";
 import ProductCard from "./ProductCard";
 import CompactRow from "./CompactRow";
 import ProductSheet from "./ProductSheet";
@@ -223,7 +224,10 @@ export default function MesaClient({ mesaId }: { mesaId: string }) {
         aria-label={t("llamarMozo")}
         className="fixed right-4 z-30 flex h-13 w-13 items-center justify-center rounded-full border border-line bg-card-2 shadow-xl shadow-black/30 transition-all duration-300 active:scale-90"
         style={{ bottom: barraCarritoVisible ? 80 : 24 }}
-        onClick={() => mostrarToast(`${t("mozoNotificado")} ${mesaId}`, "bell")}
+        onClick={() => {
+          avisarMozo(mesaId);
+          mostrarToast(`${t("mozoNotificado")} ${mesaId}`, "bell");
+        }}
       >
         <Icono nombre="bell" size={22} />
       </button>
