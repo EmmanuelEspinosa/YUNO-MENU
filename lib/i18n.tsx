@@ -118,6 +118,16 @@ const strings = {
     pt: "Ver na sua mesa",
   },
   tamanoReal: { es: "Tamaño real", en: "Actual size", pt: "Tamanho real" },
+  reiniciarDemo: {
+    es: "Reiniciar demo",
+    en: "Reset demo",
+    pt: "Reiniciar demo",
+  },
+  reiniciarConfirmar: {
+    es: "Tocá de nuevo para confirmar",
+    en: "Tap again to confirm",
+    pt: "Toque de novo para confirmar",
+  },
   comoFunciona: {
     es: "¿Cómo funciona?",
     en: "How it works",

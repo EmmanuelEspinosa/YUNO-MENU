@@ -3,6 +3,7 @@
 import { config } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useMoneda } from "@/lib/moneda";
+import { useState } from "react";
 import type { Vista } from "@/lib/tipos";
 import Icono from "./Icono";
 
@@ -22,6 +23,27 @@ export default function SettingsSheet({
   const { idioma, setIdioma } = useIdioma();
   const { moneda, setMoneda } = useMoneda();
   const t = useT();
+  const [confirmandoReinicio, setConfirmandoReinicio] = useState(false);
+
+  /**
+   * Deja la demo como recién instalada, para arrancar limpio con cada
+   * prospecto. Va discreto abajo de todo: es una herramienta de quien muestra
+   * la demo, no una función para el cliente de la mesa.
+   */
+  async function reiniciarDemo() {
+    if (!confirmandoReinicio) {
+      setConfirmandoReinicio(true);
+      setTimeout(() => setConfirmandoReinicio(false), 4000);
+      return;
+    }
+    try {
+      sessionStorage.clear(); // carrito y tutorial
+      localStorage.clear(); // idioma, moneda y vista
+    } catch {}
+    // Pantalla de cocina: los llamados y pedidos viven en el servidor.
+    await fetch("/api/eventos", { method: "DELETE" }).catch(() => {});
+    window.location.reload();
+  }
 
   return (
     <div className="fixed inset-0 z-50">
@@ -130,6 +152,21 @@ export default function SettingsSheet({
               {t("comoFuncionaDetalle")}
             </span>
           </span>
+        </button>
+
+        {/* Deliberadamente discreto: es para quien muestra la demo, no para
+            el cliente sentado en la mesa. */}
+        <button
+          onClick={reiniciarDemo}
+          className={`mx-auto mt-6 block px-3 py-2 text-[11px] transition-colors ${
+            confirmandoReinicio
+              ? "font-semibold text-brand"
+              : "text-muted/45 hover:text-muted"
+          }`}
+        >
+          {confirmandoReinicio
+            ? t("reiniciarConfirmar")
+            : t("reiniciarDemo")}
         </button>
       </div>
     </div>

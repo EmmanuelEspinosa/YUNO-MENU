@@ -34,6 +34,12 @@ const slides: Record<Idioma, Slide[]> = {
       texto: "Tocá cualquier plato para ver su descripción, el video y el precio.",
     },
     {
+      icono: "rotate-3d",
+      variante: "suave",
+      titulo: "Miralo en 3D",
+      texto: "En varios platos podés girarlo con el dedo y verlo a tamaño real sobre tu mesa.",
+    },
+    {
       icono: "bell",
       variante: "borde",
       titulo: "Llamá al mozo",
@@ -60,6 +66,12 @@ const slides: Record<Idioma, Slide[]> = {
       texto: "Tap any dish to see its description, video and price.",
     },
     {
+      icono: "rotate-3d",
+      variante: "suave",
+      titulo: "See it in 3D",
+      texto: "On several dishes you can spin it with your finger and see it life-size on your table.",
+    },
+    {
       icono: "bell",
       variante: "borde",
       titulo: "Call the waiter",
@@ -84,6 +96,12 @@ const slides: Record<Idioma, Slide[]> = {
       variante: "suave",
       titulo: "Explore o cardápio",
       texto: "Toque em qualquer prato para ver a descrição, o vídeo e o preço.",
+    },
+    {
+      icono: "rotate-3d",
+      variante: "suave",
+      titulo: "Veja em 3D",
+      texto: "Em vários pratos você pode girar com o dedo e ver em tamanho real na sua mesa.",
     },
     {
       icono: "bell",

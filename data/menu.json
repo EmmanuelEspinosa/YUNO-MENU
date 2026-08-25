@@ -34,17 +34,17 @@
       "anchoCm": 8,
       "i18n": {
         "es": {
-          "nombre": "Espresso Aurora",
+          "nombre": "Espresso",
           "descripcionCorta": "Shot intenso de nuestro blend propio",
           "descripcionLarga": "Doble shot extraído en 25 segundos con nuestro blend de Brasil y Colombia, tostado medio en casa. Notas de cacao amargo, caramelo y un final largo. Para puristas que no negocian."
         },
         "en": {
-          "nombre": "Espresso Aurora",
+          "nombre": "Espresso",
           "descripcionCorta": "An intense shot of our house blend",
           "descripcionLarga": "Double shot pulled in 25 seconds from our own Brazil-Colombia blend, medium roasted in house. Notes of bitter cocoa, caramel and a long finish. For purists who don't compromise."
         },
         "pt": {
-          "nombre": "Espresso Aurora",
+          "nombre": "Espresso",
           "descripcionCorta": "Shot intenso da nossa mistura da casa",
           "descripcionLarga": "Dose dupla extraída em 25 segundos com nossa mistura de Brasil e Colômbia, torrada em casa. Notas de cacau amargo, caramelo e final longo. Para puristas que não negociam."
         }

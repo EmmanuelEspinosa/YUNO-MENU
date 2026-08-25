@@ -219,6 +219,30 @@ la URL — el cliente nunca lo tipea.
 - **Sesión de mesa**: número de mesa por URL + carrito en `sessionStorage`. Sin
   login ni base de datos.
 
+## Limitaciones conocidas
+
+### Se pueden perder eventos simultáneos (mesa → cocina)
+
+**Qué pasa**: si dos mesas generan un evento en el mismo segundo (por ejemplo,
+las dos tocan la campana a la vez), uno de los dos avisos puede no llegar a la
+pantalla de cocina.
+
+**Por qué**: todos los eventos se guardan en **una sola clave** de Netlify
+Blobs, como una lista. Cada escritura hace *leer la lista → agregar el evento →
+guardar la lista entera*. Si dos peticiones se solapan, las dos leen la misma
+versión y la segunda pisa lo que escribió la primera.
+
+**Estado**: aceptado para la demo. Ya apareció una vez, cuando el pedido y el
+pago se enviaban en paralelo al confirmar: se perdía el pedido. Eso se resolvió
+enviándolos en secuencia (`avisarPedidoYPago` en `lib/integracion.ts`), pero el
+problema de fondo sigue si el choque viene de dos clientes distintos.
+
+**Cómo se arregla** cuando esto sea una app de verdad: guardar **un blob por
+evento** (clave `evento-{id}`) en vez de una lista compartida. Ahí las
+escrituras dejan de pisarse porque cada una toca su propia clave, y la lectura
+pasa a ser un `list()`. También se puede resolver con escrituras condicionales
+por ETag, o directamente con una base de datos.
+
 ## Stack
 
 Next.js (App Router) + React + Tailwind CSS. Sin más dependencias.
