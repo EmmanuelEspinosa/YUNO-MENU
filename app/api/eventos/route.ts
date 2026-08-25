@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
-import { agregarEvento, leerEventos, limpiarEventos } from "@/lib/eventos";
+import {
+  agregarEvento,
+  leerEventos,
+  limpiarEventos,
+  marcarAtendido,
+} from "@/lib/eventos";
 import type { Evento } from "@/lib/eventos";
 
 // La vista de cocina consulta cada 2 segundos: nada de esto puede cachearse.
@@ -41,9 +46,36 @@ export async function POST(request: Request) {
     totalArs: cuerpo.totalArs,
     propinaArs: cuerpo.propinaArs,
     metodo: cuerpo.metodo,
+    pagoPendiente: cuerpo.pagoPendiente,
   });
 
   return NextResponse.json({ evento }, { headers: SIN_CACHE });
+}
+
+/** El personal marca un evento como resuelto: mozo atendido o mesa cobrada. */
+export async function PATCH(request: Request) {
+  let cuerpo: { id?: string };
+  try {
+    cuerpo = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: "cuerpo inválido" },
+      { status: 400, headers: SIN_CACHE }
+    );
+  }
+
+  if (!cuerpo.id) {
+    return NextResponse.json(
+      { error: "falta id" },
+      { status: 400, headers: SIN_CACHE }
+    );
+  }
+
+  const ok = await marcarAtendido(cuerpo.id);
+  return NextResponse.json(
+    { ok },
+    { status: ok ? 200 : 404, headers: SIN_CACHE }
+  );
 }
 
 /** Para dejar la pantalla limpia antes de una reunión con un prospecto. */

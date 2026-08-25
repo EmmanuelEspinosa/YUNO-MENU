@@ -6,7 +6,7 @@ import { brand, buscarProducto, textoProducto } from "@/lib/datos";
 import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
 import { elegirSugerenciaParaCarrito, generarFraseCorta } from "@/lib/sugerencias";
-import { avisarPedidoYPago } from "@/lib/integracion";
+import { avisarPedidoSinPagar, avisarPedidoYPago } from "@/lib/integracion";
 import SuggestionStep from "./SuggestionStep";
 import Icono from "./Icono";
 
@@ -21,6 +21,8 @@ type Props = {
 type Paso = 0 | 1 | 2;
 type EtapaPago = "formulario" | "procesando" | "aprobado";
 type Propina = "sin" | "10" | "15" | "efectivo";
+/** "alFinal" es el flujo clásico: consumir y arreglar con el mozo al terminar. */
+type MomentoPago = "ahora" | "alFinal";
 
 export default function OrderWizard({
   mesaId,
@@ -33,6 +35,7 @@ export default function OrderWizard({
   const t = useT();
   const formatear = useFormatoPrecio();
   const [paso, setPaso] = useState<Paso>(0);
+  const [momentoPago, setMomentoPago] = useState<MomentoPago>("ahora");
   const [propina, setPropina] = useState<Propina>("sin");
   const [observaciones, setObservaciones] = useState("");
   const [etapaPago, setEtapaPago] = useState<EtapaPago>("formulario");
@@ -79,15 +82,25 @@ export default function OrderWizard({
       })
       .filter((i) => i !== null);
 
-    avisarPedidoYPago(
-      mesaId,
-      items,
-      subtotal,
-      propina === "efectivo" ? subtotal : total,
-      montoPropina,
-      propina === "efectivo" ? "efectivo" : "tarjeta",
-      observaciones || undefined
-    );
+    if (momentoPago === "alFinal") {
+      // La mesa queda debiendo: solo va el pedido, marcado como pendiente.
+      avisarPedidoSinPagar(
+        mesaId,
+        items,
+        subtotal,
+        observaciones || undefined
+      );
+    } else {
+      avisarPedidoYPago(
+        mesaId,
+        items,
+        subtotal,
+        propina === "efectivo" ? subtotal : total,
+        montoPropina,
+        propina === "efectivo" ? "efectivo" : "tarjeta",
+        observaciones || undefined
+      );
+    }
 
     setTimeout(() => {
       setOperacion(`YU-${Math.floor(10000 + Math.random() * 89999)}`);
@@ -214,7 +227,50 @@ export default function OrderWizard({
                   {t("pasoPago")}
                 </h1>
 
+                {/* Momento del pago: ahora, o el clásico "arreglo al final" */}
                 <div className="mt-4">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted">
+                    {t("comoPagas")}
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {(["ahora", "alFinal"] as MomentoPago[]).map((op) => (
+                      <button
+                        key={op}
+                        onClick={() => setMomentoPago(op)}
+                        className={`rounded-2xl border px-3 py-3 text-left transition-colors ${
+                          momentoPago === op
+                            ? "border-brand bg-brand/10"
+                            : "border-line bg-card-2"
+                        }`}
+                      >
+                        <span
+                          className={`flex items-center gap-1.5 text-sm font-semibold ${
+                            momentoPago === op ? "text-brand" : "text-ink"
+                          }`}
+                        >
+                          <Icono
+                            nombre={op === "ahora" ? "credit-card" : "clock"}
+                            size={15}
+                          />
+                          {op === "ahora" ? t("pagarAhora") : t("pagarAlFinal")}
+                        </span>
+                        <span className="mt-1 block text-xs leading-snug text-muted">
+                          {op === "ahora"
+                            ? t("pagarAhoraDetalle")
+                            : t("pagarAlFinalDetalle")}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {momentoPago === "alFinal" && (
+                  <p className="anim-fade-up mt-3 rounded-2xl border border-brand/40 bg-brand/10 px-4 py-3 text-sm leading-relaxed text-brand">
+                    {t("avisoPagarAlFinal")}
+                  </p>
+                )}
+
+                <div className={momentoPago === "alFinal" ? "hidden" : "mt-4"}>
                   <p className="mb-2 text-xs font-medium uppercase tracking-widest text-muted">
                     {t("propina")}
                   </p>
@@ -266,43 +322,63 @@ export default function OrderWizard({
                     </li>
                   )}
                   <li className="flex justify-between py-2.5 font-semibold">
-                    <span>{t("total")}</span>
+                    <span>
+                      {momentoPago === "alFinal"
+                        ? t("pagoAlFinalResumen")
+                        : t("total")}
+                    </span>
                     <span className="text-brand">
-                      {formatear(propina === "efectivo" ? subtotal : total)}
+                      {formatear(
+                        momentoPago === "alFinal" || propina === "efectivo"
+                          ? subtotal
+                          : total
+                      )}
                     </span>
                   </li>
                 </ul>
 
-                <div className="mt-5 space-y-3">
-                  <input
-                    type="text"
-                    placeholder="4509 •••• •••• ••••"
-                    className="w-full rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
-                  />
-                  <div className="flex gap-3">
-                    <input
-                      type="text"
-                      placeholder="MM/AA"
-                      className="w-1/2 rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
-                    />
-                    <input
-                      type="text"
-                      placeholder="CVV"
-                      className="w-1/2 rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
-                    />
-                  </div>
-                </div>
+                {/* Los datos de tarjeta solo tienen sentido si paga ahora */}
+                {momentoPago === "ahora" && (
+                  <>
+                    <div className="mt-5 space-y-3">
+                      <input
+                        type="text"
+                        placeholder="4509 •••• •••• ••••"
+                        className="w-full rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
+                      />
+                      <div className="flex gap-3">
+                        <input
+                          type="text"
+                          placeholder="MM/AA"
+                          className="w-1/2 rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
+                        />
+                        <input
+                          type="text"
+                          placeholder="CVV"
+                          className="w-1/2 rounded-xl border border-line bg-card px-4 py-3 text-sm outline-none placeholder:text-muted/60 focus:border-brand"
+                        />
+                      </div>
+                    </div>
 
-                <p className="mt-4 text-center text-xs text-muted">
-                  🔒 Demo: no ingreses datos reales, no se envían a ningún lado.
-                </p>
+                    <p className="mt-4 text-center text-xs text-muted">
+                      🔒 Demo: no ingreses datos reales, no se envían a ningún lado.
+                    </p>
+                  </>
+                )}
 
                 <button
                   className="mt-4 w-full rounded-2xl bg-brand py-4 text-base font-semibold text-on-brand transition-transform active:scale-95"
                   onClick={confirmarPago}
                 >
-                  {t("confirmarPago")} ·{" "}
-                  {formatear(propina === "efectivo" ? subtotal : total)}
+                  {momentoPago === "alFinal"
+                    ? t("confirmarPedido")
+                    : t("confirmarPago")}{" "}
+                  ·{" "}
+                  {formatear(
+                    momentoPago === "alFinal" || propina === "efectivo"
+                      ? subtotal
+                      : total
+                  )}
                 </button>
               </>
             )}
@@ -318,15 +394,28 @@ export default function OrderWizard({
               <div className="anim-fade-up flex min-h-[85dvh] flex-col justify-center">
                 <div className="text-center">
                   <div className="anim-pop-in mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-brand/15 text-brand">
-                    <Icono nombre="badge-check" size={40} />
+                    <Icono
+                      nombre={
+                        momentoPago === "alFinal" ? "hand-coins" : "badge-check"
+                      }
+                      size={40}
+                    />
                   </div>
                   <h1 className="font-display mt-5 text-3xl font-semibold">
-                    {t("pagoAprobado")}
+                    {momentoPago === "alFinal"
+                      ? t("pedidoConfirmado")
+                      : t("pagoAprobado")}
                   </h1>
                   <p className="mt-2 text-sm text-muted">
                     {t("mesa")} {mesaId} · #{operacion}
                   </p>
                 </div>
+
+                {momentoPago === "alFinal" && (
+                  <p className="mt-6 rounded-2xl border border-brand/40 bg-brand/10 px-4 py-3 text-center text-sm leading-relaxed text-brand">
+                    {t("avisoPagarAlFinal")}
+                  </p>
+                )}
 
                 <p className="mt-7 text-center text-sm text-muted">
                   {t("gracias")}. {brand.nombre} 💛

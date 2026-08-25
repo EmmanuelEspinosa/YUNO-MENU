@@ -21,6 +21,7 @@ type Carga = {
   totalArs?: number;
   propinaArs?: number;
   metodo?: string;
+  pagoPendiente?: boolean;
 };
 
 function emitir(carga: Carga): Promise<void> {
@@ -63,4 +64,24 @@ export function avisarPedidoYPago(
     });
     await emitir({ tipo: "pago", mesa, totalArs, propinaArs, metodo });
   })();
+}
+
+/**
+ * El cliente consume ahora y paga al final. Solo se emite el pedido, marcado
+ * como pendiente: la mesa le queda debiendo al local hasta que el mozo cobre.
+ */
+export function avisarPedidoSinPagar(
+  mesa: string,
+  items: ItemEvento[],
+  totalArs: number,
+  observaciones?: string
+): void {
+  void emitir({
+    tipo: "pedido",
+    mesa,
+    items,
+    totalArs,
+    observaciones,
+    pagoPendiente: true,
+  });
 }

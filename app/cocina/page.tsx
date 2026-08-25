@@ -127,7 +127,24 @@ export default function CocinaPage() {
     setEventos([]);
   }
 
-  const pendientes = eventos.filter((e) => e.tipo === "mozo").length;
+  async function marcarAtendido(id: string) {
+    // Optimista: la pantalla responde al toque y después se sincroniza sola.
+    setEventos((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, atendido: true } : e))
+    );
+    await fetch("/api/eventos", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    }).catch(() => {});
+  }
+
+  const llamandoMozo = eventos.filter((e) => e.tipo === "mozo" && !e.atendido);
+  const mesasDebiendo = eventos.filter((e) => e.pagoPendiente && !e.atendido);
+  const totalAdeudado = mesasDebiendo.reduce(
+    (suma, e) => suma + (e.totalArs ?? 0),
+    0
+  );
 
   return (
     <main className="mx-auto min-h-dvh max-w-3xl px-5 py-6">
@@ -180,12 +197,38 @@ export default function CocinaPage() {
         </button>
       </header>
 
-      {pendientes > 0 && (
-        <p className="anim-fade-up mt-4 rounded-2xl border border-brand/40 bg-brand/10 px-4 py-3 text-sm font-medium text-brand">
-          {pendientes === 1
-            ? "1 mesa está llamando al mozo"
-            : `${pendientes} mesas están llamando al mozo`}
+      {llamandoMozo.length > 0 && (
+        <p className="anim-fade-up mt-4 flex items-center gap-2 rounded-2xl border border-brand/40 bg-brand/10 px-4 py-3 text-sm font-medium text-brand">
+          <Icono nombre="bell" size={16} />
+          {llamandoMozo.length === 1
+            ? `Mesa ${llamandoMozo[0].mesa} está llamando al mozo`
+            : `${llamandoMozo.length} mesas están llamando al mozo`}
         </p>
+      )}
+
+      {/* Cuentas abiertas: el mozo tiene que ver de un vistazo quién debe */}
+      {mesasDebiendo.length > 0 && (
+        <div className="anim-fade-up mt-3 rounded-2xl border border-line bg-card-2 px-4 py-3">
+          <div className="flex items-center justify-between gap-3">
+            <p className="flex items-center gap-2 text-sm font-semibold">
+              <Icono nombre="hand-coins" size={16} className="text-brand" />
+              Cuentas abiertas
+            </p>
+            <span className="font-semibold text-brand">
+              {formatearPesos(totalAdeudado)}
+            </span>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {mesasDebiendo.map((e) => (
+              <span
+                key={e.id}
+                className="rounded-full border border-brand/40 bg-brand/10 px-2.5 py-1 text-xs font-medium text-brand"
+              >
+                Mesa {e.mesa} · {formatearPesos(e.totalArs ?? 0)}
+              </span>
+            ))}
+          </div>
+        </div>
       )}
 
       {eventos.length === 0 ? (
@@ -207,14 +250,16 @@ export default function CocinaPage() {
             return (
               <li
                 key={e.id}
-                className={`rounded-2xl border p-4 transition-shadow ${est.color} ${
+                className={`rounded-2xl border p-4 transition-all ${
+                  e.atendido ? "border-line bg-card opacity-55" : est.color
+                } ${
                   nuevo ? "anim-fade-up shadow-lg shadow-brand/20 ring-2 ring-brand" : ""
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
-                      e.tipo === "mozo"
+                      e.tipo === "mozo" && !e.atendido
                         ? "bg-brand text-on-brand"
                         : "bg-card-2 text-brand"
                     }`}
@@ -226,7 +271,21 @@ export default function CocinaPage() {
                     <p className="font-display text-lg font-semibold leading-tight">
                       Mesa {e.mesa}
                     </p>
-                    <p className="text-sm text-muted">{est.titulo}</p>
+                    <p className="flex flex-wrap items-center gap-1.5 text-sm text-muted">
+                      {est.titulo}
+                      {e.pagoPendiente && !e.atendido && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-brand px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-on-brand">
+                          <Icono nombre="clock" size={11} />
+                          Pago pendiente
+                        </span>
+                      )}
+                      {e.atendido && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-line px-2 py-0.5 text-[11px] font-medium text-muted">
+                          <Icono nombre="check" size={11} />
+                          Resuelto
+                        </span>
+                      )}
+                    </p>
                   </div>
 
                   <div className="shrink-0 text-right">
@@ -276,6 +335,17 @@ export default function CocinaPage() {
                       ? ` · propina ${formatearPesos(e.propinaArs)}`
                       : ""}
                   </p>
+                )}
+
+                {/* Cerrar la acción: cobrar la mesa o dar por atendido el llamado */}
+                {!e.atendido && (e.pagoPendiente || e.tipo === "mozo") && (
+                  <button
+                    onClick={() => marcarAtendido(e.id)}
+                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-card-2 py-2.5 text-sm font-semibold transition-transform active:scale-[0.98]"
+                  >
+                    <Icono nombre="check" size={15} />
+                    {e.pagoPendiente ? "Marcar como cobrada" : "Ya lo atendí"}
+                  </button>
                 )}
               </li>
             );

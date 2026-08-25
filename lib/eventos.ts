@@ -29,6 +29,9 @@ export type Evento = {
   totalArs?: number;
   propinaArs?: number;
   metodo?: string;
+  /** El cliente eligió consumir ahora y pagar al final: la mesa queda debiendo. */
+  pagoPendiente?: boolean;
+  /** El personal ya resolvió esto (fue a la mesa, cobró, etc.). */
   atendido?: boolean;
 };
 
@@ -88,6 +91,30 @@ export async function agregarEvento(
     memoria = actualizados;
   }
   return completo;
+}
+
+/** Marca un evento como resuelto por el personal (mozo avisado, mesa cobrada). */
+export async function marcarAtendido(id: string): Promise<boolean> {
+  const previos = await leerEventos();
+  let encontrado = false;
+  const actualizados = previos.map((e) => {
+    if (e.id !== id) return e;
+    encontrado = true;
+    return { ...e, atendido: true };
+  });
+  if (!encontrado) return false;
+
+  const store = await abrirStore();
+  if (!store) {
+    memoria = actualizados;
+    return true;
+  }
+  try {
+    await store.setJSON(CLAVE, actualizados);
+  } catch {
+    memoria = actualizados;
+  }
+  return true;
 }
 
 export async function limpiarEventos(): Promise<void> {
