@@ -35,7 +35,9 @@ export default function OrderWizard({
   const t = useT();
   const formatear = useFormatoPrecio();
   const [paso, setPaso] = useState<Paso>(0);
-  const [momentoPago, setMomentoPago] = useState<MomentoPago>("ahora");
+  // Por defecto el flujo clásico: la mayoría prefiere consumir y arreglar al
+  // final. Pagar con tarjeta desde la mesa queda para quien lo elige.
+  const [momentoPago, setMomentoPago] = useState<MomentoPago>("alFinal");
   const [propina, setPropina] = useState<Propina>("sin");
   const [observaciones, setObservaciones] = useState("");
   const [etapaPago, setEtapaPago] = useState<EtapaPago>("formulario");
@@ -233,7 +235,7 @@ export default function OrderWizard({
                     {t("comoPagas")}
                   </p>
                   <div className="grid grid-cols-2 gap-2">
-                    {(["ahora", "alFinal"] as MomentoPago[]).map((op) => (
+                    {(["alFinal", "ahora"] as MomentoPago[]).map((op) => (
                       <button
                         key={op}
                         onClick={() => setMomentoPago(op)}
