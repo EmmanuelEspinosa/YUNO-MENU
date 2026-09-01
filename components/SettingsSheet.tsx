@@ -40,8 +40,11 @@ export default function SettingsSheet({
       sessionStorage.clear(); // carrito y tutorial
       localStorage.clear(); // idioma, moneda y vista
     } catch {}
-    // Pantalla de cocina: los llamados y pedidos viven en el servidor.
-    await fetch("/api/eventos", { method: "DELETE" }).catch(() => {});
+    // Lo que vive en el servidor: pantalla de cocina y valoraciones.
+    await Promise.all([
+      fetch("/api/eventos", { method: "DELETE" }).catch(() => {}),
+      fetch("/api/valoraciones", { method: "DELETE" }).catch(() => {}),
+    ]);
     window.location.reload();
   }
 

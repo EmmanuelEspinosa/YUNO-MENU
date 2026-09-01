@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { brand, config, urlGoogleFonts } from "@/lib/datos";
 import { IdiomaProvider } from "@/lib/i18n";
 import { MonedaProvider } from "@/lib/moneda";
+import { ValoracionesProvider } from "@/lib/usarValoraciones";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,7 +39,9 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href={urlGoogleFonts()} precedence="default" />
         <IdiomaProvider>
-          <MonedaProvider>{children}</MonedaProvider>
+          <MonedaProvider>
+            <ValoracionesProvider>{children}</ValoracionesProvider>
+          </MonedaProvider>
         </IdiomaProvider>
       </body>
     </html>

@@ -9,6 +9,7 @@ import { elegirSugerenciaParaCarrito, generarFraseCorta } from "@/lib/sugerencia
 import { avisarPedidoSinPagar, avisarPedidoYPago } from "@/lib/integracion";
 import SuggestionStep from "./SuggestionStep";
 import Icono from "./Icono";
+import PuntuarPedido from "./PuntuarPedido";
 
 type Props = {
   mesaId: string;
@@ -418,6 +419,8 @@ export default function OrderWizard({
                     {t("avisoPagarAlFinal")}
                   </p>
                 )}
+
+                <PuntuarPedido carrito={carrito} />
 
                 <p className="mt-7 text-center text-sm text-muted">
                   {t("gracias")}. {brand.nombre} 💛

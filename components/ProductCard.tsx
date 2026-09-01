@@ -6,6 +6,8 @@ import { useIdioma, useT } from "@/lib/i18n";
 import { useFormatoPrecio } from "@/lib/moneda";
 import LazyVideo from "./LazyVideo";
 import TagBadges from "./TagBadges";
+import Estrellas from "./Estrellas";
+import { useValoraciones } from "@/lib/usarValoraciones";
 
 type Props = {
   producto: Producto;
@@ -18,6 +20,8 @@ export default function ProductCard({ producto, onAbrir, onAgregar }: Props) {
   const t = useT();
   const formatear = useFormatoPrecio();
   const texto = textoProducto(producto, idioma);
+  const { promedios } = useValoraciones();
+  const valoracion = promedios[producto.id];
 
   return (
     <article
@@ -30,9 +34,17 @@ export default function ProductCard({ producto, onAbrir, onAgregar }: Props) {
         className="aspect-[16/10] w-full bg-card-2"
       />
       <div className="p-4">
-        <h3 className="font-display text-lg font-semibold leading-snug">
-          {texto.nombre}
-        </h3>
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="font-display text-lg font-semibold leading-snug">
+            {texto.nombre}
+          </h3>
+          {valoracion && (
+            <span className="mt-1 flex shrink-0 items-center gap-1 text-xs font-medium">
+              <Estrellas valor={valoracion.promedio} size={12} />
+              {valoracion.promedio.toFixed(1)}
+            </span>
+          )}
+        </div>
         <p className="mt-1 text-sm leading-relaxed text-muted">
           {texto.descripcionCorta}
         </p>

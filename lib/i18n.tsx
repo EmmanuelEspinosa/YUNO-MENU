@@ -104,6 +104,23 @@ const strings = {
     pt: "Obrigado pela visita",
   },
   configuracion: { es: "Preferencias", en: "Preferences", pt: "Preferências" },
+  puntuar: { es: "¿Qué te pareció?", en: "How was it?", pt: "O que achou?" },
+  tuPuntaje: { es: "Tu puntaje", en: "Your rating", pt: "Sua nota" },
+  graciasPorPuntuar: {
+    es: "¡Gracias por tu opinión!",
+    en: "Thanks for your feedback!",
+    pt: "Obrigado pela sua opinião!",
+  },
+  sinValoraciones: {
+    es: "Todavía sin puntajes",
+    en: "No ratings yet",
+    pt: "Ainda sem notas",
+  },
+  puntuaTuPedido: {
+    es: "Puntuá lo que pediste",
+    en: "Rate what you ordered",
+    pt: "Avalie o que você pediu",
+  },
   ver3d: { es: "Ver en 3D", en: "View in 3D", pt: "Ver em 3D" },
   verVideo: { es: "Ver video", en: "Watch video", pt: "Ver vídeo" },
   cargando3d: { es: "Cargando 3D…", en: "Loading 3D…", pt: "Carregando 3D…" },

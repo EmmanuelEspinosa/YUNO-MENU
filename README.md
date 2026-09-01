@@ -243,6 +243,27 @@ escrituras dejan de pisarse porque cada una toca su propia clave, y la lectura
 pasa a ser un `list()`. También se puede resolver con escrituras condicionales
 por ETag, o directamente con una base de datos.
 
+### Las valoraciones se pueden inflar
+
+**Qué pasa**: no hay cuentas de usuario. Lo que cada dispositivo votó se guarda
+en `localStorage`, así que una persona no vota dos veces la misma milanesa sin
+querer. Pero si borra los datos del navegador, puede volver a votar.
+
+**Estado**: aceptado para la demo. La mitigación real ya está implementada: al
+terminar el pedido se ofrece puntuar **solo los platos que la mesa consumió**,
+y eso sí está atado a un pedido que pasó por el sistema.
+
+**Cómo se endurece** en una app real: aceptar únicamente las valoraciones que
+vienen de la pantalla de confirmación, asociadas al identificador del pedido, y
+descartar las libres. O limitar por IP y por mesa.
+
+### Los votos simultáneos tienen el mismo problema que los eventos
+
+Las valoraciones se guardan como agregado en una sola clave, con el mismo
+patrón de *leer → modificar → guardar* descrito arriba. Si dos personas puntúan
+en el mismo instante, un voto puede perderse. Se resuelve igual: una clave por
+plato, o escrituras condicionales por ETag.
+
 ## Stack
 
 Next.js (App Router) + React + Tailwind CSS. Sin más dependencias.

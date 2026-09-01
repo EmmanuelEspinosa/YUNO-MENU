@@ -9,6 +9,8 @@ import LazyVideo from "./LazyVideo";
 import TagBadges from "./TagBadges";
 import Icono from "./Icono";
 import Modelo3D from "./Modelo3D";
+import Estrellas from "./Estrellas";
+import { useValoraciones } from "@/lib/usarValoraciones";
 
 type Props = {
   producto: Producto;
@@ -29,6 +31,9 @@ export default function ProductSheet({
   const texto = textoProducto(producto, idioma);
   const [ver3d, setVer3d] = useState(false);
   const tiene3d = Boolean(producto.modelo3d);
+  const { promedios, misVotos, votar } = useValoraciones();
+  const valoracion = promedios[producto.id];
+  const miVoto = misVotos[producto.id];
 
   return (
     <div className="fixed inset-0 z-50">
@@ -81,10 +86,48 @@ export default function ProductSheet({
           <h2 className="font-display mt-3 text-2xl font-semibold leading-tight">
             {texto.nombre}
           </h2>
+          {/* Promedio de los demás clientes, si ya hay votos */}
+          <div className="mt-2 flex items-center gap-2">
+            {valoracion ? (
+              <>
+                <Estrellas valor={valoracion.promedio} size={15} />
+                <span className="text-sm font-medium">
+                  {valoracion.promedio.toFixed(1)}
+                </span>
+                <span className="text-xs text-muted">
+                  ({valoracion.votos})
+                </span>
+              </>
+            ) : (
+              <span className="text-xs text-muted">
+                {t("sinValoraciones")}
+              </span>
+            )}
+          </div>
+
           <TagBadges tags={producto.tags} className="mt-3" />
           <p className="mt-3 leading-relaxed text-muted">
             {texto.descripcionLarga}
           </p>
+
+          {/* Puntuar: libre desde acá, sin necesidad de haberlo pedido */}
+          <div className="mt-5 rounded-2xl border border-line bg-card-2 px-4 py-3">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted">
+              {miVoto ? t("tuPuntaje") : t("puntuar")}
+            </p>
+            <div className="mt-2 flex items-center gap-3">
+              <Estrellas
+                valor={miVoto ?? 0}
+                size={26}
+                onVotar={(n) => votar(producto.id, n)}
+              />
+              {miVoto && (
+                <span className="text-xs text-brand">
+                  {t("graciasPorPuntuar")}
+                </span>
+              )}
+            </div>
+          </div>
           <div className="mt-6 flex items-center justify-between gap-4">
             <span className="text-2xl font-semibold text-brand">
               {formatear(producto.precioArs)}

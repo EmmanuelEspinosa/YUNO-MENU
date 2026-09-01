@@ -27,3 +27,6 @@ next-env.d.ts
 
 # claude code local settings
 .claude/settings.local.json
+
+# archivos originales de los escaneos 3D (pesados, no van al sitio)
+/modelos-fuente/

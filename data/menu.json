@@ -499,6 +499,34 @@
       }
     },
     {
+      "id": "milanesa",
+      "categoria": "salados",
+      "precioArs": 13500,
+      "video": "https://videos.pexels.com/video-files/37210552/15763532_640_360_30fps.mp4",
+      "poster": "https://images.pexels.com/videos/37210552/pexels-photo-37210552.jpeg?cs=tinysrgb&dpr=1&w=500",
+      "maridajes": ["limonada", "cold-brew"],
+      "tags": [],
+      "modelo3d": "/modelos/milanesa.glb",
+      "anchoCm": 26,
+      "i18n": {
+        "es": {
+          "nombre": "Milanesa con papas",
+          "descripcionCorta": "De ternera, empanada a mano y con papas caseras",
+          "descripcionLarga": "Milanesa de nalga empanada a mano y frita en el momento, con papas cortadas en casa. La porción es generosa: mirala en 3D antes de pedirla y vas a entender por qué."
+        },
+        "en": {
+          "nombre": "Breaded steak with fries",
+          "descripcionCorta": "Hand-breaded beef with house-cut fries",
+          "descripcionLarga": "Hand-breaded beef cutlet, fried to order, with fries cut in house. The portion is generous: check it in 3D before ordering and you'll see why."
+        },
+        "pt": {
+          "nombre": "Milanesa com batatas",
+          "descripcionCorta": "De carne, empanada à mão e com batatas caseiras",
+          "descripcionLarga": "Milanesa de carne empanada à mão e frita na hora, com batatas cortadas em casa. A porção é generosa: veja em 3D antes de pedir e vai entender por quê."
+        }
+      }
+    },
+    {
       "id": "tostado",
       "categoria": "salados",
       "precioArs": 8900,
